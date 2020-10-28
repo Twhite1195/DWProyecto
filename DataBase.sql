@@ -1,4 +1,5 @@
-    IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'Proyecto')
+/*
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'Proyecto')
   BEGIN
     CREATE DATABASE [Proyecto]
 
@@ -7,7 +8,7 @@
     GO
        USE [Proyecto]
     GO
-
+*/
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
@@ -167,7 +168,7 @@ go
 /* Table: Carro                                             
 ==============================================================*/
 create table CARRO (
-   CAR_ID               int                not null,
+   CAR_ID               int Identity(1, 1)   not null,
    MAR_ID               int                null,
    MOD_ID               int                null,
    CAR_ESTADO           char(1)              null,
@@ -183,7 +184,7 @@ go
 /* Table: Modelo                                             
 ==============================================================*/
 create table MODELO (
-   MOD_ID               int                  not null,
+   MOD_ID               int  Identity(1, 1)   not null,
    MAR_ID               int        null,
    MOD_NOMBRE               varchar(Max)         null,
    constraint PK_MOD_ID primary key (MOD_ID)
@@ -194,7 +195,7 @@ go
 /* Table: Marca                                             
 ==============================================================*/
 create table MARCA (
-   MAR_ID               int                 not null,
+   MAR_ID               int  Identity(1, 1)   not null,
    MAR_NOMBRE           varchar(Max)         null,
    constraint PK_MAR_ID primary key (MAR_ID)
 )
@@ -204,7 +205,7 @@ go
 /* Table: Reservacion                                             
 ==============================================================*/
 create table RESERVACION(
-   RES_ID                 int                       not null,
+   RES_ID                 int  Identity(1, 1)   not null,
    LOT_ID                 int                       not null,
    USU_ID                 int                       not null,
    CAR_ID                 int                       not null,
@@ -221,12 +222,12 @@ go
 /* Table: Usuario
 ==============================================================*/
 create table USUARIO (
-   USU_ID               int                          not null,
+   USU_ID               int   Identity(1, 1)        not null,
    USU_CEDULA		        varchar(50)                    not null,
+   USU_PASSWORD            varchar(50)                    not null,     
    USU_NOMBRE	        	varchar(50)        	           not null,
    USU_APELLIDO		      varchar(50)       	           not null,
    USU_TELEFONO		      int                         not null,
-   USU_RESIDENCIA	      varchar(100)             	     not null,
    USU_ESTADO		        char(1)                        not null,
    USU_CORREO		        varchar(100)       	           not null,
    constraint PK_USU_ID primary key (USU_ID)
@@ -256,8 +257,7 @@ go
 ==============================================================*/
 create table PUESTO (
    PUES_ID             int IDENTITY(1,1)     not null,
-   PUES_NOMBRE         varchar(100)          not null,
-   PUES_ESTADO         char(1)          not null
+   PUES_NOMBRE         varchar(100)          not null
    constraint PK_PUES_ID primary key (PUES_ID )
 )
 go
@@ -266,7 +266,7 @@ go
 /* Table: Sede                                             
 ==============================================================*/
 create table SEDE (
-   SED_ID           int          not null,
+   SED_ID           int Identity(1, 1)    not null ,
    SED_NOMBRE               varchar(50)               null,
    SED_UBICACION        varchar(100)               null,
    constraint PK_Sede primary key (SED_ID)
@@ -277,7 +277,7 @@ go
 ==============================================================*/
 
 create table PROVEEDOR (
-   PROVE_ID         int           not null,
+   PROVE_ID         int    Identity(1, 1) not null ,
    SED_ID               int              null,
    PROVE_NOMBRE              varchar(100)                      not null,
    PROVE_FUNCION        varchar(100)               null,
@@ -288,7 +288,7 @@ go
 /* Table: Lote                                             
 ==============================================================*/
 create table LOTE (
-   LOT_ID           int          not null,
+   LOT_ID           int  Identity(1, 1)  not null, 
    SED_ID              int               null,
    LOTE_DISPONIBILIDAD             bit                    not null
    constraint PK_Cliente primary key (LOT_ID)
@@ -358,3 +358,27 @@ alter table PROVEEDOR
    add constraint FK_PROVEEDOR_REFERENCE_SEDE foreign key (SED_ID)
       references SEDE (SED_ID)
 go
+
+/*==============================================================*/
+/* Table: INSERTS                                           
+==============================================================*/
+/* Table: Usuario*/
+INSERT INTO USUARIO (USU_CEDULA,USU_PASSWORD,USU_NOMBRE,USU_APELLIDO,USU_TELEFONO,USU_ESTADO,USU_CORREO) VALUES (116260314,'12345','Thomas','White',15682256,'A','twhitev314@ulacit.ed.cr');
+INSERT INTO USUARIO (USU_CEDULA,USU_PASSWORD,USU_NOMBRE,USU_APELLIDO,USU_TELEFONO,USU_ESTADO,USU_CORREO) VALUES (559959937,'12345','Ben','Dover',73974783,'A','BenDover@yahoo.com');
+INSERT INTO USUARIO (USU_CEDULA,USU_PASSWORD,USU_NOMBRE,USU_APELLIDO,USU_TELEFONO,USU_ESTADO,USU_CORREO) VALUES (646511834,'12345','Dixie','Normus',45568228,'A','DixieNormus@gmail.com');
+
+/* Table: PUESTO*/
+INSERT INTO PUESTO (PUES_NOMBRE) VALUES('Administrador');
+INSERT INTO PUESTO (PUES_NOMBRE) VALUES('Gerente');
+INSERT INTO PUESTO (PUES_NOMBRE) VALUES('Recepcionista');
+INSERT INTO PUESTO (PUES_NOMBRE) VALUES('Servicio Tecnico');
+
+/* Table: SEDE*/
+
+INSERT INTO SEDE (SED_NOMBRE,SED_UBICACION) VALUES('HQ', 'La Uruca,San José');
+INSERT INTO SEDE (SED_NOMBRE,SED_UBICACION) VALUES('Paradise', 'Liberia,Guanacaste');
+INSERT INTO SEDE (SED_NOMBRE,SED_UBICACION) VALUES('Ghetto', 'Lion XIII');
+
+/* Table: Empleado*/
+
+INSERT INTO EMPLEADO (SED_ID,PUES_ID)

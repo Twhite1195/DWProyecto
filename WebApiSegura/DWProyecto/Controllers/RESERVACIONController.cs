@@ -12,6 +12,8 @@ using DWProyecto.Models;
 
 namespace DWProyecto.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/RESERVACION")]
     public class RESERVACIONController : ApiController
     {
         private ProyectoEntities db = new ProyectoEntities();
@@ -26,30 +28,30 @@ namespace DWProyecto.Controllers
         [ResponseType(typeof(RESERVACION))]
         public IHttpActionResult GetRESERVACION(int id)
         {
-            RESERVACION rESERVACION = db.RESERVACION.Find(id);
-            if (rESERVACION == null)
+            RESERVACION reservacion = db.RESERVACION.Find(id);
+            if (reservacion == null)
             {
                 return NotFound();
             }
 
-            return Ok(rESERVACION);
+            return Ok(reservacion);
         }
 
         // PUT: api/RESERVACION/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutRESERVACION(int id, RESERVACION rESERVACION)
+        public IHttpActionResult PutRESERVACION(int id, RESERVACION reservacion)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != rESERVACION.RES_ID)
+            if (id != reservacion.RES_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(rESERVACION).State = EntityState.Modified;
+            db.Entry(reservacion).State = EntityState.Modified;
 
             try
             {
@@ -72,14 +74,14 @@ namespace DWProyecto.Controllers
 
         // POST: api/RESERVACION
         [ResponseType(typeof(RESERVACION))]
-        public IHttpActionResult PostRESERVACION(RESERVACION rESERVACION)
+        public IHttpActionResult PostRESERVACION(RESERVACION reservacion)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.RESERVACION.Add(rESERVACION);
+            db.RESERVACION.Add(reservacion);
 
             try
             {
@@ -87,7 +89,7 @@ namespace DWProyecto.Controllers
             }
             catch (DbUpdateException)
             {
-                if (RESERVACIONExists(rESERVACION.RES_ID))
+                if (RESERVACIONExists(reservacion.RES_ID))
                 {
                     return Conflict();
                 }
@@ -97,23 +99,23 @@ namespace DWProyecto.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = rESERVACION.RES_ID }, rESERVACION);
+            return CreatedAtRoute("DefaultApi", new { id = reservacion.RES_ID }, reservacion);
         }
 
         // DELETE: api/RESERVACION/5
         [ResponseType(typeof(RESERVACION))]
         public IHttpActionResult DeleteRESERVACION(int id)
         {
-            RESERVACION rESERVACION = db.RESERVACION.Find(id);
-            if (rESERVACION == null)
+            RESERVACION reservacion = db.RESERVACION.Find(id);
+            if (reservacion == null)
             {
                 return NotFound();
             }
 
-            db.RESERVACION.Remove(rESERVACION);
+            db.RESERVACION.Remove(reservacion);
             db.SaveChanges();
 
-            return Ok(rESERVACION);
+            return Ok(reservacion);
         }
 
         protected override void Dispose(bool disposing)

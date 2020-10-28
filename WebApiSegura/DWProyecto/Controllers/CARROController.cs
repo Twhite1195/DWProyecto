@@ -12,6 +12,8 @@ using DWProyecto.Models;
 
 namespace DWProyecto.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/CARRO")]
     public class CARROController : ApiController
     {
         private ProyectoEntities db = new ProyectoEntities();
@@ -26,30 +28,30 @@ namespace DWProyecto.Controllers
         [ResponseType(typeof(CARRO))]
         public IHttpActionResult GetCARRO(int id)
         {
-            CARRO cARRO = db.CARRO.Find(id);
-            if (cARRO == null)
+            CARRO carro = db.CARRO.Find(id);
+            if (carro == null)
             {
                 return NotFound();
             }
 
-            return Ok(cARRO);
+            return Ok(carro);
         }
 
         // PUT: api/CARRO/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCARRO(int id, CARRO cARRO)
+        public IHttpActionResult PutCARRO(int id, CARRO carro)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != cARRO.CAR_ID)
+            if (id != carro.CAR_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(cARRO).State = EntityState.Modified;
+            db.Entry(carro).State = EntityState.Modified;
 
             try
             {
@@ -72,14 +74,14 @@ namespace DWProyecto.Controllers
 
         // POST: api/CARRO
         [ResponseType(typeof(CARRO))]
-        public IHttpActionResult PostCARRO(CARRO cARRO)
+        public IHttpActionResult PostCARRO(CARRO carro)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.CARRO.Add(cARRO);
+            db.CARRO.Add(carro);
 
             try
             {
@@ -87,7 +89,7 @@ namespace DWProyecto.Controllers
             }
             catch (DbUpdateException)
             {
-                if (CARROExists(cARRO.CAR_ID))
+                if (CARROExists(carro.CAR_ID))
                 {
                     return Conflict();
                 }
@@ -97,23 +99,23 @@ namespace DWProyecto.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = cARRO.CAR_ID }, cARRO);
+            return CreatedAtRoute("DefaultApi", new { id = carro.CAR_ID }, carro);
         }
 
         // DELETE: api/CARRO/5
         [ResponseType(typeof(CARRO))]
         public IHttpActionResult DeleteCARRO(int id)
         {
-            CARRO cARRO = db.CARRO.Find(id);
-            if (cARRO == null)
+            CARRO carro = db.CARRO.Find(id);
+            if (carro == null)
             {
                 return NotFound();
             }
 
-            db.CARRO.Remove(cARRO);
+            db.CARRO.Remove(carro);
             db.SaveChanges();
 
-            return Ok(cARRO);
+            return Ok(carro);
         }
 
         protected override void Dispose(bool disposing)

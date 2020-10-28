@@ -12,6 +12,8 @@ using DWProyecto.Models;
 
 namespace DWProyecto.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/MODEL")]
     public class MODELOController : ApiController
     {
         private ProyectoEntities db = new ProyectoEntities();
@@ -26,30 +28,30 @@ namespace DWProyecto.Controllers
         [ResponseType(typeof(MODELO))]
         public IHttpActionResult GetMODELO(int id)
         {
-            MODELO mODELO = db.MODELO.Find(id);
-            if (mODELO == null)
+            MODELO modelo = db.MODELO.Find(id);
+            if (modelo == null)
             {
                 return NotFound();
             }
 
-            return Ok(mODELO);
+            return Ok(modelo);
         }
 
         // PUT: api/MODELO/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutMODELO(int id, MODELO mODELO)
+        public IHttpActionResult PutMODELO(int id, MODELO modelo)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != mODELO.MOD_ID)
+            if (id != modelo.MOD_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(mODELO).State = EntityState.Modified;
+            db.Entry(modelo).State = EntityState.Modified;
 
             try
             {
@@ -72,14 +74,14 @@ namespace DWProyecto.Controllers
 
         // POST: api/MODELO
         [ResponseType(typeof(MODELO))]
-        public IHttpActionResult PostMODELO(MODELO mODELO)
+        public IHttpActionResult PostMODELO(MODELO modelo)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.MODELO.Add(mODELO);
+            db.MODELO.Add(modelo);
 
             try
             {
@@ -87,7 +89,7 @@ namespace DWProyecto.Controllers
             }
             catch (DbUpdateException)
             {
-                if (MODELOExists(mODELO.MOD_ID))
+                if (MODELOExists(modelo.MOD_ID))
                 {
                     return Conflict();
                 }
@@ -97,23 +99,23 @@ namespace DWProyecto.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = mODELO.MOD_ID }, mODELO);
+            return CreatedAtRoute("DefaultApi", new { id = modelo.MOD_ID }, modelo);
         }
 
         // DELETE: api/MODELO/5
         [ResponseType(typeof(MODELO))]
         public IHttpActionResult DeleteMODELO(int id)
         {
-            MODELO mODELO = db.MODELO.Find(id);
-            if (mODELO == null)
+            MODELO modelo = db.MODELO.Find(id);
+            if (modelo == null)
             {
                 return NotFound();
             }
 
-            db.MODELO.Remove(mODELO);
+            db.MODELO.Remove(modelo);
             db.SaveChanges();
 
-            return Ok(mODELO);
+            return Ok(modelo);
         }
 
         protected override void Dispose(bool disposing)

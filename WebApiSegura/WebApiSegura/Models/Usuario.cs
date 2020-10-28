@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebApiSegura.Models
 {
-    public class Usuario
+    public class USUARIO
     {
         public int USU_CODIGO { get; set; }
         public string USU_IDENTIFICACION { get; set; }

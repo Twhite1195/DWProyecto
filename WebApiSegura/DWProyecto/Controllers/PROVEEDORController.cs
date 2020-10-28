@@ -12,6 +12,8 @@ using DWProyecto.Models;
 
 namespace DWProyecto.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/PROVEEDOR")]
     public class PROVEEDORController : ApiController
     {
         private ProyectoEntities db = new ProyectoEntities();
@@ -26,30 +28,30 @@ namespace DWProyecto.Controllers
         [ResponseType(typeof(PROVEEDOR))]
         public IHttpActionResult GetPROVEEDOR(int id)
         {
-            PROVEEDOR pROVEEDOR = db.PROVEEDOR.Find(id);
-            if (pROVEEDOR == null)
+            PROVEEDOR proveedor = db.PROVEEDOR.Find(id);
+            if (proveedor == null)
             {
                 return NotFound();
             }
 
-            return Ok(pROVEEDOR);
+            return Ok(proveedor);
         }
 
         // PUT: api/PROVEEDOR/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPROVEEDOR(int id, PROVEEDOR pROVEEDOR)
+        public IHttpActionResult PutPROVEEDOR(int id, PROVEEDOR proveedor)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != pROVEEDOR.PROVE_ID)
+            if (id != proveedor.PROVE_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(pROVEEDOR).State = EntityState.Modified;
+            db.Entry(proveedor).State = EntityState.Modified;
 
             try
             {
@@ -72,14 +74,14 @@ namespace DWProyecto.Controllers
 
         // POST: api/PROVEEDOR
         [ResponseType(typeof(PROVEEDOR))]
-        public IHttpActionResult PostPROVEEDOR(PROVEEDOR pROVEEDOR)
+        public IHttpActionResult PostPROVEEDOR(PROVEEDOR proveedor)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.PROVEEDOR.Add(pROVEEDOR);
+            db.PROVEEDOR.Add(proveedor);
 
             try
             {
@@ -87,7 +89,7 @@ namespace DWProyecto.Controllers
             }
             catch (DbUpdateException)
             {
-                if (PROVEEDORExists(pROVEEDOR.PROVE_ID))
+                if (PROVEEDORExists(proveedor.PROVE_ID))
                 {
                     return Conflict();
                 }
@@ -97,23 +99,23 @@ namespace DWProyecto.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = pROVEEDOR.PROVE_ID }, pROVEEDOR);
+            return CreatedAtRoute("DefaultApi", new { id = proveedor.PROVE_ID }, proveedor);
         }
 
         // DELETE: api/PROVEEDOR/5
         [ResponseType(typeof(PROVEEDOR))]
         public IHttpActionResult DeletePROVEEDOR(int id)
         {
-            PROVEEDOR pROVEEDOR = db.PROVEEDOR.Find(id);
-            if (pROVEEDOR == null)
+            PROVEEDOR proveedor = db.PROVEEDOR.Find(id);
+            if (proveedor == null)
             {
                 return NotFound();
             }
 
-            db.PROVEEDOR.Remove(pROVEEDOR);
+            db.PROVEEDOR.Remove(proveedor);
             db.SaveChanges();
 
-            return Ok(pROVEEDOR);
+            return Ok(proveedor);
         }
 
         protected override void Dispose(bool disposing)

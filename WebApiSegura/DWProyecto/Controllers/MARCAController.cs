@@ -12,6 +12,8 @@ using DWProyecto.Models;
 
 namespace DWProyecto.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/MARCA")]
     public class MARCAController : ApiController
     {
         private ProyectoEntities db = new ProyectoEntities();
@@ -26,30 +28,30 @@ namespace DWProyecto.Controllers
         [ResponseType(typeof(MARCA))]
         public IHttpActionResult GetMARCA(int id)
         {
-            MARCA mARCA = db.MARCA.Find(id);
-            if (mARCA == null)
+            MARCA marca = db.MARCA.Find(id);
+            if (marca == null)
             {
                 return NotFound();
             }
 
-            return Ok(mARCA);
+            return Ok(marca);
         }
 
         // PUT: api/MARCA/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutMARCA(int id, MARCA mARCA)
+        public IHttpActionResult PutMARCA(int id, MARCA marca)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != mARCA.MAR_ID)
+            if (id != marca.MAR_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(mARCA).State = EntityState.Modified;
+            db.Entry(marca).State = EntityState.Modified;
 
             try
             {
@@ -72,14 +74,14 @@ namespace DWProyecto.Controllers
 
         // POST: api/MARCA
         [ResponseType(typeof(MARCA))]
-        public IHttpActionResult PostMARCA(MARCA mARCA)
+        public IHttpActionResult PostMARCA(MARCA marca)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.MARCA.Add(mARCA);
+            db.MARCA.Add(marca);
 
             try
             {
@@ -87,7 +89,7 @@ namespace DWProyecto.Controllers
             }
             catch (DbUpdateException)
             {
-                if (MARCAExists(mARCA.MAR_ID))
+                if (MARCAExists(marca.MAR_ID))
                 {
                     return Conflict();
                 }
@@ -97,23 +99,23 @@ namespace DWProyecto.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = mARCA.MAR_ID }, mARCA);
+            return CreatedAtRoute("DefaultApi", new { id = marca.MAR_ID }, marca);
         }
 
         // DELETE: api/MARCA/5
         [ResponseType(typeof(MARCA))]
         public IHttpActionResult DeleteMARCA(int id)
         {
-            MARCA mARCA = db.MARCA.Find(id);
-            if (mARCA == null)
+            MARCA marca = db.MARCA.Find(id);
+            if (marca == null)
             {
                 return NotFound();
             }
 
-            db.MARCA.Remove(mARCA);
+            db.MARCA.Remove(marca);
             db.SaveChanges();
 
-            return Ok(mARCA);
+            return Ok(marca);
         }
 
         protected override void Dispose(bool disposing)

@@ -70,7 +70,6 @@
           </Key>
           <Property Name="PUES_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PUES_NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="PUES_ESTADO" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="RESERVACION">
           <Key>
@@ -97,10 +96,10 @@
           </Key>
           <Property Name="USU_ID" Type="int" Nullable="false" />
           <Property Name="USU_CEDULA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="USU_PASSWORD" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="USU_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="USU_APELLIDO" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="USU_TELEFONO" Type="int" Nullable="false" />
-          <Property Name="USU_RESIDENCIA" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="USU_ESTADO" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="USU_CORREO" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
@@ -393,7 +392,6 @@
           </Key>
           <Property Name="PUES_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PUES_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PUES_ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_EMPLEADO_REFERENCE_PUESTO" FromRole="PUESTO" ToRole="EMPLEADO" />
         </EntityType>
         <EntityType Name="RESERVACION">
@@ -428,10 +426,10 @@
           </Key>
           <Property Name="USU_ID" Type="Int32" Nullable="false" />
           <Property Name="USU_CEDULA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USU_PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="USU_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="USU_APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="USU_TELEFONO" Type="Int32" Nullable="false" />
-          <Property Name="USU_RESIDENCIA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="USU_ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="USU_CORREO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="RESERVACION" Relationship="Self.FK_RESERVACION_REFERENCE_USUARIO" FromRole="USUARIO" ToRole="RESERVACION" />
@@ -716,7 +714,6 @@
               <MappingFragment StoreEntitySet="PUESTO">
                 <ScalarProperty Name="PUES_ID" ColumnName="PUES_ID" />
                 <ScalarProperty Name="PUES_NOMBRE" ColumnName="PUES_NOMBRE" />
-                <ScalarProperty Name="PUES_ESTADO" ColumnName="PUES_ESTADO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -746,10 +743,10 @@
               <MappingFragment StoreEntitySet="USUARIO">
                 <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
                 <ScalarProperty Name="USU_CEDULA" ColumnName="USU_CEDULA" />
+                <ScalarProperty Name="USU_PASSWORD" ColumnName="USU_PASSWORD" />
                 <ScalarProperty Name="USU_NOMBRE" ColumnName="USU_NOMBRE" />
                 <ScalarProperty Name="USU_APELLIDO" ColumnName="USU_APELLIDO" />
                 <ScalarProperty Name="USU_TELEFONO" ColumnName="USU_TELEFONO" />
-                <ScalarProperty Name="USU_RESIDENCIA" ColumnName="USU_RESIDENCIA" />
                 <ScalarProperty Name="USU_ESTADO" ColumnName="USU_ESTADO" />
                 <ScalarProperty Name="USU_CORREO" ColumnName="USU_CORREO" />
               </MappingFragment>

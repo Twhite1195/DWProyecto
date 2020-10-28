@@ -12,6 +12,8 @@ using DWProyecto.Models;
 
 namespace DWProyecto.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/EMPLEADO")]
     public class EMPLEADOController : ApiController
     {
         private ProyectoEntities db = new ProyectoEntities();
@@ -26,30 +28,30 @@ namespace DWProyecto.Controllers
         [ResponseType(typeof(EMPLEADO))]
         public IHttpActionResult GetEMPLEADO(int id)
         {
-            EMPLEADO eMPLEADO = db.EMPLEADO.Find(id);
-            if (eMPLEADO == null)
+            EMPLEADO empleado = db.EMPLEADO.Find(id);
+            if (empleado == null)
             {
                 return NotFound();
             }
 
-            return Ok(eMPLEADO);
+            return Ok(empleado);
         }
 
         // PUT: api/EMPLEADO/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutEMPLEADO(int id, EMPLEADO eMPLEADO)
+        public IHttpActionResult PutEMPLEADO(int id, EMPLEADO empleado)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != eMPLEADO.EMP_ID)
+            if (id != empleado.EMP_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(eMPLEADO).State = EntityState.Modified;
+            db.Entry(empleado).State = EntityState.Modified;
 
             try
             {
@@ -72,33 +74,33 @@ namespace DWProyecto.Controllers
 
         // POST: api/EMPLEADO
         [ResponseType(typeof(EMPLEADO))]
-        public IHttpActionResult PostEMPLEADO(EMPLEADO eMPLEADO)
+        public IHttpActionResult PostEMPLEADO(EMPLEADO empleado)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.EMPLEADO.Add(eMPLEADO);
+            db.EMPLEADO.Add(empleado);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = eMPLEADO.EMP_ID }, eMPLEADO);
+            return CreatedAtRoute("DefaultApi", new { id = empleado.EMP_ID }, empleado);
         }
 
         // DELETE: api/EMPLEADO/5
         [ResponseType(typeof(EMPLEADO))]
         public IHttpActionResult DeleteEMPLEADO(int id)
         {
-            EMPLEADO eMPLEADO = db.EMPLEADO.Find(id);
-            if (eMPLEADO == null)
+            EMPLEADO empleado = db.EMPLEADO.Find(id);
+            if (empleado == null)
             {
                 return NotFound();
             }
 
-            db.EMPLEADO.Remove(eMPLEADO);
+            db.EMPLEADO.Remove(empleado);
             db.SaveChanges();
 
-            return Ok(eMPLEADO);
+            return Ok(empleado);
         }
 
         protected override void Dispose(bool disposing)

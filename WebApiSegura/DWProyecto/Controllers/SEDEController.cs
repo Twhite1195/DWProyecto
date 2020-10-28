@@ -12,6 +12,8 @@ using DWProyecto.Models;
 
 namespace DWProyecto.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/SEDE")]
     public class SEDEController : ApiController
     {
         private ProyectoEntities db = new ProyectoEntities();
@@ -26,30 +28,30 @@ namespace DWProyecto.Controllers
         [ResponseType(typeof(SEDE))]
         public IHttpActionResult GetSEDE(int id)
         {
-            SEDE sEDE = db.SEDE.Find(id);
-            if (sEDE == null)
+            SEDE sede = db.SEDE.Find(id);
+            if (sede == null)
             {
                 return NotFound();
             }
 
-            return Ok(sEDE);
+            return Ok(sede);
         }
 
         // PUT: api/SEDE/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutSEDE(int id, SEDE sEDE)
+        public IHttpActionResult PutSEDE(int id, SEDE sede)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != sEDE.SED_ID)
+            if (id != sede.SED_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(sEDE).State = EntityState.Modified;
+            db.Entry(sede).State = EntityState.Modified;
 
             try
             {
@@ -72,14 +74,14 @@ namespace DWProyecto.Controllers
 
         // POST: api/SEDE
         [ResponseType(typeof(SEDE))]
-        public IHttpActionResult PostSEDE(SEDE sEDE)
+        public IHttpActionResult PostSEDE(SEDE sede)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.SEDE.Add(sEDE);
+            db.SEDE.Add(sede);
 
             try
             {
@@ -87,7 +89,7 @@ namespace DWProyecto.Controllers
             }
             catch (DbUpdateException)
             {
-                if (SEDEExists(sEDE.SED_ID))
+                if (SEDEExists(sede.SED_ID))
                 {
                     return Conflict();
                 }
@@ -97,23 +99,23 @@ namespace DWProyecto.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = sEDE.SED_ID }, sEDE);
+            return CreatedAtRoute("DefaultApi", new { id = sede.SED_ID }, sede);
         }
 
         // DELETE: api/SEDE/5
         [ResponseType(typeof(SEDE))]
         public IHttpActionResult DeleteSEDE(int id)
         {
-            SEDE sEDE = db.SEDE.Find(id);
-            if (sEDE == null)
+            SEDE sede = db.SEDE.Find(id);
+            if (sede == null)
             {
                 return NotFound();
             }
 
-            db.SEDE.Remove(sEDE);
+            db.SEDE.Remove(sede);
             db.SaveChanges();
 
-            return Ok(sEDE);
+            return Ok(sede);
         }
 
         protected override void Dispose(bool disposing)

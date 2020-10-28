@@ -26,30 +26,30 @@ namespace DWProyecto.Controllers
         [ResponseType(typeof(USUARIO))]
         public IHttpActionResult GetUSUARIO(int id)
         {
-            USUARIO uSUARIO = db.USUARIO.Find(id);
-            if (uSUARIO == null)
+            USUARIO usuario = db.USUARIO.Find(id);
+            if (usuario == null)
             {
                 return NotFound();
             }
 
-            return Ok(uSUARIO);
+            return Ok(usuario);
         }
 
         // PUT: api/USUARIO/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUSUARIO(int id, USUARIO uSUARIO)
+        public IHttpActionResult PutUSUARIO(int id, USUARIO usuario)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != uSUARIO.USU_ID)
+            if (id != usuario.USU_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(uSUARIO).State = EntityState.Modified;
+            db.Entry(usuario).State = EntityState.Modified;
 
             try
             {
@@ -72,14 +72,14 @@ namespace DWProyecto.Controllers
 
         // POST: api/USUARIO
         [ResponseType(typeof(USUARIO))]
-        public IHttpActionResult PostUSUARIO(USUARIO uSUARIO)
+        public IHttpActionResult PostUSUARIO(USUARIO usuario)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.USUARIO.Add(uSUARIO);
+            db.USUARIO.Add(usuario);
 
             try
             {
@@ -87,7 +87,7 @@ namespace DWProyecto.Controllers
             }
             catch (DbUpdateException)
             {
-                if (USUARIOExists(uSUARIO.USU_ID))
+                if (USUARIOExists(usuario.USU_ID))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace DWProyecto.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = uSUARIO.USU_ID }, uSUARIO);
+            return CreatedAtRoute("DefaultApi", new { id = usuario.USU_ID }, usuario);
         }
 
         // DELETE: api/USUARIO/5
         [ResponseType(typeof(USUARIO))]
         public IHttpActionResult DeleteUSUARIO(int id)
         {
-            USUARIO uSUARIO = db.USUARIO.Find(id);
-            if (uSUARIO == null)
+            USUARIO usuario = db.USUARIO.Find(id);
+            if (usuario == null)
             {
                 return NotFound();
             }
 
-            db.USUARIO.Remove(uSUARIO);
+            db.USUARIO.Remove(usuario);
             db.SaveChanges();
 
-            return Ok(uSUARIO);
+            return Ok(usuario);
         }
 
         protected override void Dispose(bool disposing)

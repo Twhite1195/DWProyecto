@@ -12,6 +12,8 @@ using DWProyecto.Models;
 
 namespace DWProyecto.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/LOTE")]
     public class LOTEController : ApiController
     {
         private ProyectoEntities db = new ProyectoEntities();
@@ -26,30 +28,30 @@ namespace DWProyecto.Controllers
         [ResponseType(typeof(LOTE))]
         public IHttpActionResult GetLOTE(int id)
         {
-            LOTE lOTE = db.LOTE.Find(id);
-            if (lOTE == null)
+            LOTE lote = db.LOTE.Find(id);
+            if (lote == null)
             {
                 return NotFound();
             }
 
-            return Ok(lOTE);
+            return Ok(lote);
         }
 
         // PUT: api/LOTE/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutLOTE(int id, LOTE lOTE)
+        public IHttpActionResult PutLOTE(int id, LOTE lote)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != lOTE.LOT_ID)
+            if (id != lote.LOT_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(lOTE).State = EntityState.Modified;
+            db.Entry(lote).State = EntityState.Modified;
 
             try
             {
@@ -72,14 +74,14 @@ namespace DWProyecto.Controllers
 
         // POST: api/LOTE
         [ResponseType(typeof(LOTE))]
-        public IHttpActionResult PostLOTE(LOTE lOTE)
+        public IHttpActionResult PostLOTE(LOTE lote)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.LOTE.Add(lOTE);
+            db.LOTE.Add(lote);
 
             try
             {
@@ -87,7 +89,7 @@ namespace DWProyecto.Controllers
             }
             catch (DbUpdateException)
             {
-                if (LOTEExists(lOTE.LOT_ID))
+                if (LOTEExists(lote.LOT_ID))
                 {
                     return Conflict();
                 }
@@ -97,23 +99,23 @@ namespace DWProyecto.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = lOTE.LOT_ID }, lOTE);
+            return CreatedAtRoute("DefaultApi", new { id = lote.LOT_ID }, lote);
         }
 
         // DELETE: api/LOTE/5
         [ResponseType(typeof(LOTE))]
         public IHttpActionResult DeleteLOTE(int id)
         {
-            LOTE lOTE = db.LOTE.Find(id);
-            if (lOTE == null)
+            LOTE lote = db.LOTE.Find(id);
+            if (lote == null)
             {
                 return NotFound();
             }
 
-            db.LOTE.Remove(lOTE);
+            db.LOTE.Remove(lote);
             db.SaveChanges();
 
-            return Ok(lOTE);
+            return Ok(lote);
         }
 
         protected override void Dispose(bool disposing)

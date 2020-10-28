@@ -22,10 +22,10 @@ namespace DWProyecto.Models
     
         public int USU_ID { get; set; }
         public string USU_CEDULA { get; set; }
+        public string USU_PASSWORD { get; set; }
         public string USU_NOMBRE { get; set; }
         public string USU_APELLIDO { get; set; }
         public int USU_TELEFONO { get; set; }
-        public string USU_RESIDENCIA { get; set; }
         public string USU_ESTADO { get; set; }
         public string USU_CORREO { get; set; }
     

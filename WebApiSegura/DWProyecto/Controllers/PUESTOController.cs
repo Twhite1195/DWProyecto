@@ -12,6 +12,8 @@ using DWProyecto.Models;
 
 namespace DWProyecto.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/PUESTO")]
     public class PUESTOController : ApiController
     {
         private ProyectoEntities db = new ProyectoEntities();
@@ -26,30 +28,30 @@ namespace DWProyecto.Controllers
         [ResponseType(typeof(PUESTO))]
         public IHttpActionResult GetPUESTO(int id)
         {
-            PUESTO pUESTO = db.PUESTO.Find(id);
-            if (pUESTO == null)
+            PUESTO puesto = db.PUESTO.Find(id);
+            if (puesto == null)
             {
                 return NotFound();
             }
 
-            return Ok(pUESTO);
+            return Ok(puesto);
         }
 
         // PUT: api/PUESTO/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPUESTO(int id, PUESTO pUESTO)
+        public IHttpActionResult PutPUESTO(int id, PUESTO puesto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != pUESTO.PUES_ID)
+            if (id != puesto.PUES_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(pUESTO).State = EntityState.Modified;
+            db.Entry(puesto).State = EntityState.Modified;
 
             try
             {
@@ -72,33 +74,33 @@ namespace DWProyecto.Controllers
 
         // POST: api/PUESTO
         [ResponseType(typeof(PUESTO))]
-        public IHttpActionResult PostPUESTO(PUESTO pUESTO)
+        public IHttpActionResult PostPUESTO(PUESTO puesto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.PUESTO.Add(pUESTO);
+            db.PUESTO.Add(puesto);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = pUESTO.PUES_ID }, pUESTO);
+            return CreatedAtRoute("DefaultApi", new { id = puesto.PUES_ID }, puesto);
         }
 
         // DELETE: api/PUESTO/5
         [ResponseType(typeof(PUESTO))]
         public IHttpActionResult DeletePUESTO(int id)
         {
-            PUESTO pUESTO = db.PUESTO.Find(id);
-            if (pUESTO == null)
+            PUESTO puesto = db.PUESTO.Find(id);
+            if (puesto == null)
             {
                 return NotFound();
             }
 
-            db.PUESTO.Remove(pUESTO);
+            db.PUESTO.Remove(puesto);
             db.SaveChanges();
 
-            return Ok(pUESTO);
+            return Ok(puesto);
         }
 
         protected override void Dispose(bool disposing)

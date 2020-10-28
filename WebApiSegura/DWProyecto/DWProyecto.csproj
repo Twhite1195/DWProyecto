@@ -184,6 +184,7 @@
     <Compile Include="Controllers\CARROController.cs" />
     <Compile Include="Controllers\EMPLEADOController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LOTEController.cs" />
     <Compile Include="Controllers\MARCAController.cs" />
     <Compile Include="Controllers\MODELOController.cs" />
@@ -191,55 +192,58 @@
     <Compile Include="Controllers\PUESTOController.cs" />
     <Compile Include="Controllers\RESERVACIONController.cs" />
     <Compile Include="Controllers\SEDEController.cs" />
+    <Compile Include="Controllers\TokenGenerator.cs" />
+    <Compile Include="Controllers\TokenValidationHandler.cs" />
     <Compile Include="Controllers\USUARIOController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CARRO.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModeloProyecto.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EMPLEADO.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModeloProyecto.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\LOTE.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModeloProyecto.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MARCA.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>ModeloProyecto.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MODELO.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModeloProyecto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeloProyecto.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloProyecto.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeloProyecto.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloProyecto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeloProyecto.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloProyecto.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\PROVEEDOR.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModeloProyecto.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PUESTO.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModeloProyecto.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RESERVACION.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModeloProyecto.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SEDE.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModeloProyecto.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USUARIO.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModeloProyecto.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -252,15 +256,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\Model1.Context.tt">
+    <Content Include="Models\ModeloProyecto.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>ModeloProyecto.edmx</DependentUpon>
+      <LastGenOutput>ModeloProyecto.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model1.tt">
+    <Content Include="Models\ModeloProyecto.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>ModeloProyecto.edmx</DependentUpon>
+      <LastGenOutput>ModeloProyecto.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -283,12 +287,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\Model1.edmx">
+    <EntityDeploy Include="Models\ModeloProyecto.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModeloProyecto.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Content Include="Models\ModeloProyecto.edmx.diagram">
+      <DependentUpon>ModeloProyecto.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

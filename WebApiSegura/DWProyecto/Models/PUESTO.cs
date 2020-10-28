@@ -22,7 +22,6 @@ namespace DWProyecto.Models
     
         public int PUES_ID { get; set; }
         public string PUES_NOMBRE { get; set; }
-        public string PUES_ESTADO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EMPLEADO> EMPLEADO { get; set; }

@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProyectoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CARRO">
+    <Key>
+      <PropertyRef Name="CAR_ID" />
+    </Key>
+    <Property Name="CAR_ID" Type="Int32" Nullable="false" />
+    <Property Name="MAR_ID" Type="Int32" />
+    <Property Name="MOD_ID" Type="Int32" />
+    <Property Name="CAR_ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CAR_PLACA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="SED_ID" Type="Int32" />
+    <Property Name="LOT_ID" Type="Int32" />
+    <Property Name="RES_ID" Type="Int32" />
+    <NavigationProperty Name="LOTE" Relationship="Self.FK_CARRO_REFERENCE_LOTE" FromRole="CARRO" ToRole="LOTE" />
+    <NavigationProperty Name="MARCA" Relationship="Self.FK_CARRO_REFERENCE_MARCA" FromRole="CARRO" ToRole="MARCA" />
+    <NavigationProperty Name="MODELO" Relationship="Self.FK_CARRO_REFERENCE_MODELO" FromRole="CARRO" ToRole="MODELO" />
+    <NavigationProperty Name="RESERVACION" Relationship="Self.FK_CARRO_REFERENCE_RESERVACION" FromRole="CARRO" ToRole="RESERVACION" />
+    <NavigationProperty Name="SEDE" Relationship="Self.FK_CARRO_REFERENCE_SEDE" FromRole="CARRO" ToRole="SEDE" />
+    <NavigationProperty Name="RESERVACION1" Relationship="Self.FK_RESERVACION_REFERENCE_CARRO" FromRole="CARRO" ToRole="RESERVACION" />
+  </EntityType>
+  <EntityType Name="EMPLEADO">
+    <Key>
+      <PropertyRef Name="EMP_ID" />
+    </Key>
+    <Property Name="EMP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SED_ID" Type="Int32" Nullable="false" />
+    <Property Name="PUES_ID" Type="Int32" Nullable="false" />
+    <Property Name="EMP_CEDULA" Type="Int32" Nullable="false" />
+    <Property Name="EMP_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMP_APELLIDO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMP_TELEFONO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMP_RESIDENCIA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMP_ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PUESTO" Relationship="Self.FK_EMPLEADO_REFERENCE_PUESTO" FromRole="EMPLEADO" ToRole="PUESTO" />
+    <NavigationProperty Name="SEDE" Relationship="Self.FK_EMPLEADO_REFERENCE_SEDE" FromRole="EMPLEADO" ToRole="SEDE" />
+  </EntityType>
+  <EntityType Name="LOTE">
+    <Key>
+      <PropertyRef Name="LOT_ID" />
+    </Key>
+    <Property Name="LOT_ID" Type="Int32" Nullable="false" />
+    <Property Name="SED_ID" Type="Int32" />
+    <Property Name="LOTE_DISPONIBILIDAD" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CARRO" Relationship="Self.FK_CARRO_REFERENCE_LOTE" FromRole="LOTE" ToRole="CARRO" />
+    <NavigationProperty Name="RESERVACION" Relationship="Self.FK_RESERVACION_REFERENCE_LOTE" FromRole="LOTE" ToRole="RESERVACION" />
+  </EntityType>
+  <EntityType Name="MARCA">
+    <Key>
+      <PropertyRef Name="MAR_ID" />
+    </Key>
+    <Property Name="MAR_ID" Type="Int32" Nullable="false" />
+    <Property Name="MAR_NOMBRE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CARRO" Relationship="Self.FK_CARRO_REFERENCE_MARCA" FromRole="MARCA" ToRole="CARRO" />
+    <NavigationProperty Name="MODELO" Relationship="Self.FK_MODELO_REFERENCE_MARCA" FromRole="MARCA" ToRole="MODELO" />
+  </EntityType>
+  <EntityType Name="MODELO">
+    <Key>
+      <PropertyRef Name="MOD_ID" />
+    </Key>
+    <Property Name="MOD_ID" Type="Int32" Nullable="false" />
+    <Property Name="MAR_ID" Type="Int32" />
+    <Property Name="MOD_NOMBRE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CARRO" Relationship="Self.FK_CARRO_REFERENCE_MODELO" FromRole="MODELO" ToRole="CARRO" />
+    <NavigationProperty Name="MARCA" Relationship="Self.FK_MODELO_REFERENCE_MARCA" FromRole="MODELO" ToRole="MARCA" />
+  </EntityType>
+  <EntityType Name="PROVEEDOR">
+    <Key>
+      <PropertyRef Name="PROVE_ID" />
+    </Key>
+    <Property Name="PROVE_ID" Type="Int32" Nullable="false" />
+    <Property Name="SED_ID" Type="Int32" />
+    <Property Name="PROVE_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PROVE_FUNCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SEDE" Relationship="Self.FK_PROVEEDOR_REFERENCE_SEDE" FromRole="PROVEEDOR" ToRole="SEDE" />
+  </EntityType>
+  <EntityType Name="PUESTO">
+    <Key>
+      <PropertyRef Name="PUES_ID" />
+    </Key>
+    <Property Name="PUES_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PUES_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PUES_ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_EMPLEADO_REFERENCE_PUESTO" FromRole="PUESTO" ToRole="EMPLEADO" />
+  </EntityType>
+  <EntityType Name="RESERVACION">
+    <Key>
+      <PropertyRef Name="RES_ID" />
+    </Key>
+    <Property Name="RES_ID" Type="Int32" Nullable="false" />
+    <Property Name="LOT_ID" Type="Int32" Nullable="false" />
+    <Property Name="USU_ID" Type="Int32" Nullable="false" />
+    <Property Name="CAR_ID" Type="Int32" Nullable="false" />
+    <Property Name="RES_FECHA_INI" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RES_FECHA_FIN" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CARRO" Relationship="Self.FK_CARRO_REFERENCE_RESERVACION" FromRole="RESERVACION" ToRole="CARRO" />
+    <NavigationProperty Name="CARRO1" Relationship="Self.FK_RESERVACION_REFERENCE_CARRO" FromRole="RESERVACION" ToRole="CARRO" />
+    <NavigationProperty Name="LOTE" Relationship="Self.FK_RESERVACION_REFERENCE_LOTE" FromRole="RESERVACION" ToRole="LOTE" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_RESERVACION_REFERENCE_USUARIO" FromRole="RESERVACION" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="SEDE">
+    <Key>
+      <PropertyRef Name="SED_ID" />
+    </Key>
+    <Property Name="SED_ID" Type="Int32" Nullable="false" />
+    <Property Name="SED_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SED_UBICACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CARRO" Relationship="Self.FK_CARRO_REFERENCE_SEDE" FromRole="SEDE" ToRole="CARRO" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_EMPLEADO_REFERENCE_SEDE" FromRole="SEDE" ToRole="EMPLEADO" />
+    <NavigationProperty Name="PROVEEDOR" Relationship="Self.FK_PROVEEDOR_REFERENCE_SEDE" FromRole="SEDE" ToRole="PROVEEDOR" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="USU_ID" />
+    </Key>
+    <Property Name="USU_ID" Type="Int32" Nullable="false" />
+    <Property Name="USU_CEDULA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="USU_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="USU_APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="USU_TELEFONO" Type="Int32" Nullable="false" />
+    <Property Name="USU_RESIDENCIA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="USU_ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="USU_CORREO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="RESERVACION" Relationship="Self.FK_RESERVACION_REFERENCE_USUARIO" FromRole="USUARIO" ToRole="RESERVACION" />
+  </EntityType>
+  <Association Name="FK_CARRO_REFERENCE_LOTE">
+    <End Role="LOTE" Type="Self.LOTE" Multiplicity="0..1" />
+    <End Role="CARRO" Type="Self.CARRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOTE">
+        <PropertyRef Name="LOT_ID" />
+      </Principal>
+      <Dependent Role="CARRO">
+        <PropertyRef Name="LOT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARRO_REFERENCE_MARCA">
+    <End Role="MARCA" Type="Self.MARCA" Multiplicity="0..1" />
+    <End Role="CARRO" Type="Self.CARRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MARCA">
+        <PropertyRef Name="MAR_ID" />
+      </Principal>
+      <Dependent Role="CARRO">
+        <PropertyRef Name="MAR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARRO_REFERENCE_MODELO">
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="0..1" />
+    <End Role="CARRO" Type="Self.CARRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODELO">
+        <PropertyRef Name="MOD_ID" />
+      </Principal>
+      <Dependent Role="CARRO">
+        <PropertyRef Name="MOD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARRO_REFERENCE_RESERVACION">
+    <End Role="RESERVACION" Type="Self.RESERVACION" Multiplicity="0..1" />
+    <End Role="CARRO" Type="Self.CARRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RESERVACION">
+        <PropertyRef Name="RES_ID" />
+      </Principal>
+      <Dependent Role="CARRO">
+        <PropertyRef Name="RES_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARRO_REFERENCE_SEDE">
+    <End Role="SEDE" Type="Self.SEDE" Multiplicity="0..1" />
+    <End Role="CARRO" Type="Self.CARRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SEDE">
+        <PropertyRef Name="SED_ID" />
+      </Principal>
+      <Dependent Role="CARRO">
+        <PropertyRef Name="SED_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RESERVACION_REFERENCE_CARRO">
+    <End Role="CARRO" Type="Self.CARRO" Multiplicity="1" />
+    <End Role="RESERVACION" Type="Self.RESERVACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARRO">
+        <PropertyRef Name="CAR_ID" />
+      </Principal>
+      <Dependent Role="RESERVACION">
+        <PropertyRef Name="CAR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLEADO_REFERENCE_PUESTO">
+    <End Role="PUESTO" Type="Self.PUESTO" Multiplicity="1" />
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PUESTO">
+        <PropertyRef Name="PUES_ID" />
+      </Principal>
+      <Dependent Role="EMPLEADO">
+        <PropertyRef Name="PUES_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLEADO_REFERENCE_SEDE">
+    <End Role="SEDE" Type="Self.SEDE" Multiplicity="1" />
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SEDE">
+        <PropertyRef Name="SED_ID" />
+      </Principal>
+      <Dependent Role="EMPLEADO">
+        <PropertyRef Name="SED_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RESERVACION_REFERENCE_LOTE">
+    <End Role="LOTE" Type="Self.LOTE" Multiplicity="1" />
+    <End Role="RESERVACION" Type="Self.RESERVACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOTE">
+        <PropertyRef Name="LOT_ID" />
+      </Principal>
+      <Dependent Role="RESERVACION">
+        <PropertyRef Name="LOT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MODELO_REFERENCE_MARCA">
+    <End Role="MARCA" Type="Self.MARCA" Multiplicity="0..1" />
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MARCA">
+        <PropertyRef Name="MAR_ID" />
+      </Principal>
+      <Dependent Role="MODELO">
+        <PropertyRef Name="MAR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROVEEDOR_REFERENCE_SEDE">
+    <End Role="SEDE" Type="Self.SEDE" Multiplicity="0..1" />
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SEDE">
+        <PropertyRef Name="SED_ID" />
+      </Principal>
+      <Dependent Role="PROVEEDOR">
+        <PropertyRef Name="SED_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RESERVACION_REFERENCE_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="RESERVACION" Type="Self.RESERVACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="USU_ID" />
+      </Principal>
+      <Dependent Role="RESERVACION">
+        <PropertyRef Name="USU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProyectoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CARRO" EntityType="Self.CARRO" />
+    <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" />
+    <EntitySet Name="LOTE" EntityType="Self.LOTE" />
+    <EntitySet Name="MARCA" EntityType="Self.MARCA" />
+    <EntitySet Name="MODELO" EntityType="Self.MODELO" />
+    <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" />
+    <EntitySet Name="PUESTO" EntityType="Self.PUESTO" />
+    <EntitySet Name="RESERVACION" EntityType="Self.RESERVACION" />
+    <EntitySet Name="SEDE" EntityType="Self.SEDE" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+    <AssociationSet Name="FK_CARRO_REFERENCE_LOTE" Association="Self.FK_CARRO_REFERENCE_LOTE">
+      <End Role="LOTE" EntitySet="LOTE" />
+      <End Role="CARRO" EntitySet="CARRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARRO_REFERENCE_MARCA" Association="Self.FK_CARRO_REFERENCE_MARCA">
+      <End Role="MARCA" EntitySet="MARCA" />
+      <End Role="CARRO" EntitySet="CARRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARRO_REFERENCE_MODELO" Association="Self.FK_CARRO_REFERENCE_MODELO">
+      <End Role="MODELO" EntitySet="MODELO" />
+      <End Role="CARRO" EntitySet="CARRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARRO_REFERENCE_RESERVACION" Association="Self.FK_CARRO_REFERENCE_RESERVACION">
+      <End Role="RESERVACION" EntitySet="RESERVACION" />
+      <End Role="CARRO" EntitySet="CARRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARRO_REFERENCE_SEDE" Association="Self.FK_CARRO_REFERENCE_SEDE">
+      <End Role="SEDE" EntitySet="SEDE" />
+      <End Role="CARRO" EntitySet="CARRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RESERVACION_REFERENCE_CARRO" Association="Self.FK_RESERVACION_REFERENCE_CARRO">
+      <End Role="CARRO" EntitySet="CARRO" />
+      <End Role="RESERVACION" EntitySet="RESERVACION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLEADO_REFERENCE_PUESTO" Association="Self.FK_EMPLEADO_REFERENCE_PUESTO">
+      <End Role="PUESTO" EntitySet="PUESTO" />
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLEADO_REFERENCE_SEDE" Association="Self.FK_EMPLEADO_REFERENCE_SEDE">
+      <End Role="SEDE" EntitySet="SEDE" />
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RESERVACION_REFERENCE_LOTE" Association="Self.FK_RESERVACION_REFERENCE_LOTE">
+      <End Role="LOTE" EntitySet="LOTE" />
+      <End Role="RESERVACION" EntitySet="RESERVACION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MODELO_REFERENCE_MARCA" Association="Self.FK_MODELO_REFERENCE_MARCA">
+      <End Role="MARCA" EntitySet="MARCA" />
+      <End Role="MODELO" EntitySet="MODELO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROVEEDOR_REFERENCE_SEDE" Association="Self.FK_PROVEEDOR_REFERENCE_SEDE">
+      <End Role="SEDE" EntitySet="SEDE" />
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RESERVACION_REFERENCE_USUARIO" Association="Self.FK_RESERVACION_REFERENCE_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="RESERVACION" EntitySet="RESERVACION" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

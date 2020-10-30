@@ -294,3 +294,4 @@ D:\Documents\GitHub\DWProyecto\WebApiSegura\DWProyecto\bin\Microsoft.CodeDom.Pro
 D:\Documents\GitHub\DWProyecto\WebApiSegura\DWProyecto\obj\Debug\DWProyecto.csproj.CopyComplete
 D:\Documents\GitHub\DWProyecto\WebApiSegura\DWProyecto\obj\Debug\DWProyecto.dll
 D:\Documents\GitHub\DWProyecto\WebApiSegura\DWProyecto\obj\Debug\DWProyecto.pdb
+D:\Documents\GitHub\DWProyecto\WebApiSegura\DWProyecto\obj\Debug\DWProyecto.csprojAssemblyReference.cache

@@ -10,12 +10,6 @@ IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'Proyecto')
     GO
 */
 
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('CARRO') and o.name = 'FK_CARRO_REFERENCE_MARCA')
-alter table CARRO
-   drop constraint FK_CARRO_REFERENCE_MARCA
-go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
@@ -87,12 +81,7 @@ alter table EMPLEADO
    drop constraint FK_EMPLEADO_REFERENCE_PUESTO
 go
 
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PROVEEDOR') and o.name = 'FK_PROVEEDOR_REFERENCE_SEDE')
-alter table PROVEEDOR
-   drop constraint FK_PROVEEDOR_REFERENCE_SEDE
-go
+
 
 if exists (select 1
             from  sysobjects
@@ -106,13 +95,6 @@ if exists (select 1
            where  id = object_id('MODELO')
             and   type = 'U')
    drop table MODELO
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('MARCA')
-            and   type = 'U')
-   drop table MARCA
 go
 
 if exists (select 1
@@ -152,13 +134,6 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('PROVEEDOR')
-            and   type = 'U')
-   drop table PROVEEDOR
-go
-
-if exists (select 1
-            from  sysobjects
            where  id = object_id('LOTE')
             and   type = 'U')
    drop table LOTE
@@ -169,7 +144,6 @@ go
 ==============================================================*/
 create table CARRO (
    CAR_ID               int Identity(1, 1)   not null,
-   MAR_ID               int                null,
    MOD_ID               int                null,
    CAR_ESTADO           char(1)              null,
    CAR_PLACA           varchar(Max)             null,
@@ -185,21 +159,13 @@ go
 ==============================================================*/
 create table MODELO (
    MOD_ID               int  Identity(1, 1)   not null,
-   MAR_ID               int        null,
+   Mod_MARCA               varchar(max)        null,
    MOD_NOMBRE               varchar(Max)         null,
    constraint PK_MOD_ID primary key (MOD_ID)
 )
 go
 
-/*==============================================================*/
-/* Table: Marca                                             
-==============================================================*/
-create table MARCA (
-   MAR_ID               int  Identity(1, 1)   not null,
-   MAR_NOMBRE           varchar(Max)         null,
-   constraint PK_MAR_ID primary key (MAR_ID)
-)
-go
+
 
 /*==============================================================*/
 /* Table: Reservacion                                             
@@ -272,18 +238,7 @@ create table SEDE (
    constraint PK_Sede primary key (SED_ID)
 )
 go
-/*==============================================================*/
-/* Table: Proveedor                                             
-==============================================================*/
 
-create table PROVEEDOR (
-   PROVE_ID         int    Identity(1, 1) not null ,
-   SED_ID               int              null,
-   PROVE_NOMBRE              varchar(100)                      not null,
-   PROVE_FUNCION        varchar(100)               null,
-   constraint PK_Proveedor primary key (PROVE_ID)
-)
-go
 /*==============================================================*/
 /* Table: Lote                                             
 ==============================================================*/
@@ -298,11 +253,6 @@ go
 /*==============================================================*/
 /* Table: Foreign Keys                                             
 ==============================================================*/
-
-alter table CARRO
-   add constraint FK_CARRO_REFERENCE_MARCA foreign key (MAR_ID)
-      references MARCA (MAR_ID)
-go
 
 alter table CARRO
    add constraint FK_CARRO_REFERENCE_MODELO foreign key (MOD_ID)
@@ -324,10 +274,6 @@ alter table CARRO
       references RESERVACION (RES_ID)
 go
 
-alter table MODELO
-   add constraint FK_MODELO_REFERENCE_MARCA foreign key (MAR_ID)
-      references MARCA (MAR_ID)
-go
 
 alter table RESERVACION
    add constraint FK_RESERVACION_REFERENCE_LOTE foreign key (LOT_ID)
@@ -354,10 +300,7 @@ alter table EMPLEADO
       references PUESTO (PUES_ID)
 go
 
-alter table PROVEEDOR
-   add constraint FK_PROVEEDOR_REFERENCE_SEDE foreign key (SED_ID)
-      references SEDE (SED_ID)
-go
+
 
 /*==============================================================*/
 /* Table: INSERTS                                           
@@ -387,11 +330,6 @@ INSERT INTO EMPLEADO (SED_ID,PUES_ID,EMP_CEDULA,EMP_NOMBRE,EMP_APELLIDO,EMP_TELE
 INSERT INTO EMPLEADO (SED_ID,PUES_ID,EMP_CEDULA,EMP_NOMBRE,EMP_APELLIDO,EMP_TELEFONO,EMP_RESIDENCIA,EMP_ESTADO) VALUES (2,3,895683893,'Estela','Gartija',85162493,'San Pedro','A');
 INSERT INTO EMPLEADO (SED_ID,PUES_ID,EMP_CEDULA,EMP_NOMBRE,EMP_APELLIDO,EMP_TELEFONO,EMP_RESIDENCIA,EMP_ESTADO) VALUES (3,4,273558344,'Elena','Nito',87621913,'Guadalupe','A');
 
-/*Table PROVEEDOR*/
-
-INSERT INTO PROVEEDOR (SED_ID,PROVE_NOMBRE,PROVE_FUNCION) VALUES (1,'Amigo Cuate','Mecanico');
-INSERT INTO PROVEEDOR (SED_ID,PROVE_NOMBRE,PROVE_FUNCION) VALUES (2,'Rejunta Botados','Grúa');
-INSERT INTO PROVEEDOR (SED_ID,PROVE_NOMBRE,PROVE_FUNCION) VALUES (3,'Repuestos Brayan','Repuestos');
 
 /* Table: LOTE*/
 
@@ -416,42 +354,42 @@ INSERT INTO MARCA(MAR_NOMBRE) VALUES ('Mazda');
 
 /* Table: MODELO*/
 /*Toyota*/
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (1,'Yaris');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (1,'Corolla');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (1,'Supra');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (1,'Hilux');
+INSERT INTO MODELO(Mod_MARCA,MOD_NOMBRE) VALUES ('Toyota','Yaris');
+INSERT INTO MODELO(Mod_MARCA,MOD_NOMBRE) VALUES ('Toyota','Corolla');
+INSERT INTO MODELO(Mod_MARCA,MOD_NOMBRE) VALUES ('Toyota','Supra');
+INSERT INTO MODELO(Mod_MARCA,MOD_NOMBRE) VALUES ('Toyota','Hilux');
 /*BMW*/
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (2,'Serie 1');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (2,'Serie 2');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (2,'Serie 3');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (2,'Serie 4');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('BMW','Serie 1');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('BMW','Serie 2');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('BMW','Serie 3');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('BMW','Serie 4');
 /*Hyundai*/
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (3,'i10');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (3,'i20');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (3,'i30');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (3,'i40');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('Hyundai','i10');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('Hyundai','i20');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('Hyundai','i30');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('Hyundai','i40');
 /*Honda*/
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (4,'Civic');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (4,'CR-V');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (4,'Accord');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (4,'Oddyssey');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('Honda','Civic');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('Honda','CR-V');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('Honda','Accord');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('Honda','Oddyssey');
 /*KIA*/
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (5,'Sorento');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (5,'Rio');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (5,'Picanto');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (5,'Sportage');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('KIA','Sorento');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('KIA','Rio');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('KIA','Picanto');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('KIA','Sportage');
 /*Mazda*/
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (6,'3');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (6,'CX-5');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (6,'CX-30');
-INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES (6,'MX-30');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('Mazda','3');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('Mazda','CX-5');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('Mazda','CX-30');
+INSERT INTO MODELO(MAR_ID,MOD_NOMBRE) VALUES ('Mazda','MX-30');
 
 
 /* Table: CARRO*/
 
-INSERT INTO CARRO(MAR_ID,MOD_ID,CAR_ESTADO,CAR_PLACA,SED_ID,LOT_ID) VALUES (1,2,'D','CRC-786',1,1);
+INSERT INTO CARRO(MOD_ID,CAR_ESTADO,CAR_PLACA,SED_ID,LOT_ID) VALUES (1,'D','CRC-786',1,1);
 
-INSERT INTO CARRO(MAR_ID,MOD_ID,CAR_ESTADO,CAR_PLACA,SED_ID,LOT_ID) VALUES (2,3,'D','CRC-788',2,4);
+INSERT INTO CARRO(MOD_ID,CAR_ESTADO,CAR_PLACA,SED_ID,LOT_ID) VALUES (7,'D','CRC-788',2,4);
 
 /*Reservacion*/
 

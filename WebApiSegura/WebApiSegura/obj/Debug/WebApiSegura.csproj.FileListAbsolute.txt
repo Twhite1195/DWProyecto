@@ -183,8 +183,8 @@ D:\Documents\GitHub\DWProyecto\WebApiSegura\WebApiSegura\bin\System.Web.WebPages
 D:\Documents\GitHub\DWProyecto\WebApiSegura\WebApiSegura\bin\System.Web.WebPages.Razor.xml
 D:\Documents\GitHub\DWProyecto\WebApiSegura\WebApiSegura\bin\Antlr3.Runtime.pdb
 D:\Documents\GitHub\DWProyecto\WebApiSegura\WebApiSegura\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Documents\GitHub\DWProyecto\WebApiSegura\WebApiSegura\obj\Debug\WebApiSegura.csprojAssemblyReference.cache
 D:\Documents\GitHub\DWProyecto\WebApiSegura\WebApiSegura\obj\Debug\WebApiSegura.csproj.CoreCompileInputs.cache
 D:\Documents\GitHub\DWProyecto\WebApiSegura\WebApiSegura\obj\Debug\WebApiSegura.csproj.CopyComplete
 D:\Documents\GitHub\DWProyecto\WebApiSegura\WebApiSegura\obj\Debug\WebApiSegura.dll
 D:\Documents\GitHub\DWProyecto\WebApiSegura\WebApiSegura\obj\Debug\WebApiSegura.pdb
+D:\Documents\GitHub\DWProyecto\WebApiSegura\WebApiSegura\obj\Debug\WebApiSegura.csprojAssemblyReference.cache

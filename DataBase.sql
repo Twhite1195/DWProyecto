@@ -243,6 +243,19 @@ create table LOTE (
 go
 
 /*==============================================================*/
+/* Table: Proveedor                                             
+==============================================================*/
+
+create table PROVEEDOR (
+   PROVE_ID         int    Identity(1, 1) not null ,
+   SED_ID               int              null,
+   PROVE_NOMBRE              varchar(100)                      not null,
+   PROVE_FUNCION        varchar(100)               null,
+   constraint PK_Proveedor primary key (PROVE_ID)
+)
+go
+
+/*==============================================================*/
 /* Table: Foreign Keys                                             
 ==============================================================*/
 
@@ -292,6 +305,10 @@ alter table EMPLEADO
       references PUESTO (PUES_ID)
 go
 
+alter table PROVEEDOR
+   add constraint FK_PROVEEDOR_REFERENCE_SEDE foreign key (SED_ID)
+      references SEDE (SED_ID)
+go
 
 
 /*==============================================================*/

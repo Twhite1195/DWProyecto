@@ -233,6 +233,7 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\CarroManager.cs" />
     <Compile Include="Controllers\HotelManager.cs" />
     <Compile Include="Controllers\ModeloManager.cs" />
     <Compile Include="Controllers\ReservasController.cs" />
@@ -261,6 +262,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Carro.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\LoginRequest.cs" />

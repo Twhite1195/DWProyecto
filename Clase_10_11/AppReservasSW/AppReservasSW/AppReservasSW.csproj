@@ -266,6 +266,8 @@
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\Modelo.cs" />
     <Compile Include="Models\Reserva.cs" />
+    <Compile Include="Models\Reservacion.cs" />
+    <Compile Include="Models\Sede.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">

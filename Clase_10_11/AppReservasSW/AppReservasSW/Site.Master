@@ -57,6 +57,10 @@
                         <li><a runat="server" href="~/Views/Habitacion.aspx">Habitacion</a></li>
                         <li><a runat="server" href="~/Views/Reserva.aspx">Reserva</a></li>
                         <li><a runat="server" href="~/Views/Modelo.aspx">Modelo</a></li>
+                        <li><a runat="server" href="~/Views/Carro.aspx">Carro</a></li>
+                        <li><a runat="server" href="~/Views/Lote.aspx">Lote</a></li>
+                        <li><a runat="server" href="~/Views/Proveedor.aspx">Proveedor</a></li>
+
                     </ul>
                 </div>
             </div>

@@ -187,7 +187,14 @@ namespace AppReservasSW.Views
             return true;
         }
 
+        protected void txtID_TextChanged(object sender, EventArgs e)
+        {
 
+        }
 
+        protected void grdLotes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

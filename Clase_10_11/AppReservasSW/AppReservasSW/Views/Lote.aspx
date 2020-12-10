@@ -21,7 +21,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:GridView ID="grdLotes" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+    <asp:GridView ID="grdLotes" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" OnSelectedIndexChanged="grdLotes_SelectedIndexChanged">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <FooterStyle BackColor="#CCCCCC" />
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -41,7 +41,7 @@
                 <asp:Label ID="Label1" runat="server" Text="ID Lote"></asp:Label>
             </td>
             <td class="auto-style3">
-                <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtID" runat="server" OnTextChanged="txtID_TextChanged"></asp:TextBox>
             </td>
             <td class="auto-style3"></td>
         </tr>

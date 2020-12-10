@@ -20,15 +20,15 @@ namespace AppReservasSW.Controllers
             LoginRequest loginRequest = new 
                 LoginRequest() { Username = username, Password = password };
 
-            HttpClient httpClient = new HttpClient();
+            HttpClient httpClient = new HttpClient(); // paquete ppara especificar el header application json, body, etc
 
             var response = await
-                httpClient.PostAsync(UrlAuthenticate,
-                new StringContent(JsonConvert.SerializeObject(loginRequest),
-                Encoding.UTF8,"application/json"));
+                httpClient.PostAsync(UrlAuthenticate,// lo envía por post a esa url 
+                new StringContent(JsonConvert.SerializeObject(loginRequest),// tomamos el objeto y lo convertimos en algo transportable ejm json, xml etc 
+                Encoding.UTF8,"application/json"));// utf8 para que reconozca todos los caracterez
 
             return 
-                JsonConvert.DeserializeObject<Usuario>
+                JsonConvert.DeserializeObject<Usuario>// nos devuelve un objeto y hay que deserializar mas el token 
                 (await response.Content.ReadAsStringAsync());
         }
 

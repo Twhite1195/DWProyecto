@@ -65,22 +65,37 @@
             </td>
         </tr>
 
-           <tr>
+            <tr>
             <td class="auto-style6">
-                Sede</td>
-            <td class="auto-style3">
-                <asp:TextBox ID="txt_sede" runat="server"></asp:TextBox>
+                <asp:Label ID="Label2" runat="server" Text="Sede"></asp:Label>
             </td>
+            <td class="auto-style3">
+                <asp:DropDownList ID="DropDownList1" runat="server">
+                   <asp:ListItem Selected="True" Value="1">HQ</asp:ListItem>
+                    <asp:ListItem Value="3">Ghetto</asp:ListItem>
+                    <asp:ListItem Value="2">Paradise</asp:ListItem>
+                    <asp:ListItem Value="1">HQ</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+            <td class="auto-style3"></td>
         </tr>
 
         <tr>
             <td class="auto-style6">
-                Puesto</td>
-            <td class="auto-style3">
-                <asp:TextBox ID="txt_puesto" runat="server"></asp:TextBox>
+                <asp:Label ID="Label1" runat="server" Text="Puesto"></asp:Label>
             </td>
+            <td class="auto-style3">
+                <asp:DropDownList ID="drpCategoria" runat="server">
+                   <asp:ListItem Selected="True" Value="1">Administrador</asp:ListItem>
+                    <asp:ListItem Value="4">Jefe de supervisores</asp:ListItem>
+                    <asp:ListItem Value="2">Gerente</asp:ListItem>
+                    <asp:ListItem Value="1">Administrador</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+            <td class="auto-style3"></td>
         </tr>
 
+        
             <tr>
             <td class="modal-sm" style="width: 190px">
                 <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnIngresar_Click"  />

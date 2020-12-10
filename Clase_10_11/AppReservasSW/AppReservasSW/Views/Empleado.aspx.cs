@@ -18,5 +18,10 @@ namespace AppReservasSW.Views
         {
 
         }
+
+        protected void drpPuesto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

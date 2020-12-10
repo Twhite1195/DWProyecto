@@ -16,11 +16,11 @@
                 <asp:TextBox ID="txt_puesto_ID" runat="server"></asp:TextBox>
             </td>
         </tr>
-            <tr>
+         <tr>
             <td class="auto-style6">
-                Puesto</td>
+                Puesto </td>
             <td class="auto-style3">
-                <asp:TextBox ID="txt_puesto" runat="server"></asp:TextBox>
+                <asp:TextBox ID="Txt_puesto" runat="server"></asp:TextBox>
             </td>
         </tr>
       <tr>

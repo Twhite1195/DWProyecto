@@ -33,13 +33,13 @@ namespace AppReservasSW.Views
         protected global::System.Web.UI.WebControls.TextBox txt_puesto_ID;
 
         /// <summary>
-        /// Control txt_puesto.
+        /// Control Txt_puesto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_puesto;
+        protected global::System.Web.UI.WebControls.TextBox Txt_puesto;
 
         /// <summary>
         /// Control btnAgregar.

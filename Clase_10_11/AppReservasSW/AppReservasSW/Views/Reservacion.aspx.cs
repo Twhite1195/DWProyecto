@@ -247,6 +247,8 @@ namespace AppReservasSW.Views
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
+            lblFechaInicio.Text = Calendar1.SelectedDate.ToShortDataString();
+            lblFechaInicio.Visible = true;
             Calendar1.Visible = false;
         }
 
@@ -257,6 +259,8 @@ namespace AppReservasSW.Views
 
         protected void Calendar2_SelectionChanged(object sender, EventArgs e)
         {
+            lblFechaFin.Text = Calendar2.SelectedDate.ToShortDataString();
+            lblFechaFin.Visible = true;
             Calendar2.Visible = false;
         }
     }

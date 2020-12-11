@@ -68,6 +68,7 @@
                     <TitleStyle BackColor="#333399" BorderStyle="Solid" Font-Bold="True" Font-Size="12pt" ForeColor="White" Height="12pt" />
                     <TodayDayStyle BackColor="#999999" ForeColor="White" />
                 </asp:Calendar>
+                <asp:Label ID="lblFechaInicio" runat="server" Text="" Visible="false"></asp:Label>
                 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Fecha inicial" />
             </td>
             <td class="auto-style2"></td>
@@ -85,6 +86,7 @@
                     <TitleStyle BackColor="#333399" BorderStyle="Solid" Font-Bold="True" Font-Size="12pt" ForeColor="White" Height="12pt" />
                     <TodayDayStyle BackColor="#999999" ForeColor="White" />
                 </asp:Calendar>
+                <asp:Label ID="lblFechaFin" runat="server" Text="" Visible="false"></asp:Label>
                 <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Fecha final" />
             </td>
             <td class="auto-style2"></td>

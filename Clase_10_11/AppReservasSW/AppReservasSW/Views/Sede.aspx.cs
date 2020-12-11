@@ -1,33 +1,31 @@
-﻿using System;
+﻿using AppReservasSW.Controllers;
+using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using AppReservasSW.Models;
-using AppReservasSW.Controllers;
-using System.Collections.ObjectModel;
-using System.Drawing;
-using Microsoft.Ajax.Utilities;
 
 namespace AppReservasSW.Views
 {
-    public partial class Modelo : System.Web.UI.Page
+    public partial class Sede : System.Web.UI.Page
     {
-        IEnumerable<Models.Modelo> modelos = new ObservableCollection<Models.Modelo>();
-        ModeloManager modeloManager = new ModeloManager();
-
+        IEnumerable<Models.Sede> modelos = new ObservableCollection<Models.Sede>();
+        SedeManager sedeManager = new SedeManager();
         protected void Page_Load(object sender, EventArgs e)
         {
             InicializarControles();
-        }
 
+        }
         private async void InicializarControles()
         {
 
-            modelos = await modeloManager.ObtenerModelos(VG.usuarioActual.CadenaToken);
-            grdModelos.DataSource = modelos.ToList();
-            grdModelos.DataBind();
+            modelos = await sedeManager.ObtenerSedes(VG.usuarioActual.CadenaToken);
+            grdSedes.DataSource = modelos.ToList();
+            grdSedes.DataBind();
         }
 
 
@@ -36,25 +34,25 @@ namespace AppReservasSW.Views
         {
             if (ValidarInsertar())
             {
-                Models.Modelo modeloIngresado = new Models.Modelo();
-                Models.Modelo modelo = new Models.Modelo()
+                Models.Sede sedeIngresado = new Models.Sede();
+                Models.Sede Sede = new Models.Sede()
                 {
-                    MOD_MARCA = txtMarca.Text,
-                    MOD_NOMBRE = txtNombre.Text
+                    SED_NOMBRE = txtNombre.Text,
+                    SED_UBICACION = txtUbicacion.Text
                 };
 
-                modeloIngresado =
-                    await modeloManager.Ingresar(modelo, VG.usuarioActual.CadenaToken);
+                sedeIngresado =
+                    await sedeManager.Ingresar(Sede, VG.usuarioActual.CadenaToken);
 
-                if (modeloIngresado != null)
+                if (sedeIngresado != null)
                 {
-                    lblStatus.Text = "Modelo ingresado correctamente";
+                    lblStatus.Text = "Sede ingresado correctamente";
                     lblStatus.Visible = true;
                     InicializarControles();
                 }
                 else
                 {
-                    lblStatus.Text = "Hubo un error al ingresar el Modelo";
+                    lblStatus.Text = "Hubo un error al ingresar la sede";
                     lblStatus.ForeColor = Color.Maroon;
                     lblStatus.Visible = true;
                 }
@@ -66,26 +64,26 @@ namespace AppReservasSW.Views
         {
             if (ValidarModificar())
             {
-                Models.Modelo modeloModificado = new Models.Modelo();
-                Models.Modelo Modelo = new Models.Modelo()
+                Models.Sede sedeModificado = new Models.Sede();
+                Models.Sede Sede = new Models.Sede()
                 {
-                    MOD_ID = Convert.ToInt32(txtID.Text),
-                    MOD_MARCA = txtMarca.Text,
-                    MOD_NOMBRE = txtNombre.Text
+                    SED_ID = Convert.ToInt32(txtID.Text),
+                    SED_NOMBRE = txtNombre.Text,
+                    SED_UBICACION = txtUbicacion.Text
                 };
 
-                modeloModificado =
-                    await modeloManager.Actualizar(Modelo, VG.usuarioActual.CadenaToken);
+                sedeModificado =
+                    await sedeManager.Actualizar(Sede, VG.usuarioActual.CadenaToken);
 
-                if (modeloModificado != null)
+                if (sedeModificado != null)
                 {
-                    lblStatus.Text = "Modelo modificado correctamente";
+                    lblStatus.Text = "Sede modificado correctamente";
                     lblStatus.Visible = true;
                     InicializarControles();
                 }
                 else
                 {
-                    lblStatus.Text = "Hubo un error al modificar el Modelo";
+                    lblStatus.Text = "Hubo un error al modificar la sede";
                     lblStatus.ForeColor = Color.Maroon;
                     lblStatus.Visible = true;
                 }
@@ -102,17 +100,17 @@ namespace AppReservasSW.Views
                 codigoHotel = txtID.Text;
 
                 codigoHotelEliminado =
-                    await modeloManager.Eliminar(codigoHotel, VG.usuarioActual.CadenaToken);
+                    await sedeManager.Eliminar(codigoHotel, VG.usuarioActual.CadenaToken);
 
                 if (!string.IsNullOrEmpty(codigoHotelEliminado))
                 {
-                    lblStatus.Text = "Modelo eliminado correctamente";
+                    lblStatus.Text = "Sede eliminado correctamente";
                     lblStatus.Visible = true;
                     InicializarControles();
                 }
                 else
                 {
-                    lblStatus.Text = "Hubo un error al eliminar el Modelo";
+                    lblStatus.Text = "Hubo un error al eliminar la sede";
                     lblStatus.ForeColor = Color.Maroon;
                     lblStatus.Visible = true;
                 }
@@ -125,12 +123,18 @@ namespace AppReservasSW.Views
             }
         }
 
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
         private bool ValidarInsertar()
         {
 
-            if (txtMarca.Text.IsNullOrWhiteSpace())
+            if (txtNombre.Text.IsNullOrWhiteSpace())
             {
-                lblStatus.Text = "Debe ingresar la marca del Modelo";
+                lblStatus.Text = "Debe ingresar el nombre de la sede";
                 lblStatus.ForeColor = Color.Maroon;
                 lblStatus.Visible = true;
                 return false;
@@ -138,7 +142,7 @@ namespace AppReservasSW.Views
 
             if (txtNombre.Text.IsNullOrWhiteSpace())
             {
-                lblStatus.Text = "Debe ingresar el nombre del Modelo";
+                lblStatus.Text = "Debe ingresar el nombre de la sede";
                 lblStatus.ForeColor = Color.Maroon;
                 lblStatus.Visible = true;
                 return false;
@@ -152,7 +156,7 @@ namespace AppReservasSW.Views
         {
             if (txtID.Text.IsNullOrWhiteSpace())
             {
-                lblStatus.Text = "Debe ingresar la marca del Modelo";
+                lblStatus.Text = "Debe ingresar el nombre de la sede";
                 lblStatus.ForeColor = Color.Maroon;
                 lblStatus.Visible = true;
                 return false;
@@ -160,7 +164,7 @@ namespace AppReservasSW.Views
 
             if (txtNombre.Text.IsNullOrWhiteSpace())
             {
-                lblStatus.Text = "Debe ingresar el nombre del Modelo";
+                lblStatus.Text = "Debe ingresar la ubicacion de la sede";
                 lblStatus.ForeColor = Color.Maroon;
                 lblStatus.Visible = true;
                 return false;

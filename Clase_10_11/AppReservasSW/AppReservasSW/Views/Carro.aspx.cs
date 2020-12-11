@@ -14,7 +14,7 @@ namespace AppReservasSW.Views
 {
     public partial class Carro : System.Web.UI.Page
     {
-        IEnumerable<Models.Carro> proveedores = new ObservableCollection<Models.Carro>();
+        IEnumerable<Models.Carro> carros = new ObservableCollection<Models.Carro>();
         CarroManager carroManager = new CarroManager();
 
 
@@ -27,8 +27,8 @@ namespace AppReservasSW.Views
         private async void InicializarControles()
         {
 
-            proveedores = await carroManager.ObtenerCarros(VG.usuarioActual.CadenaToken);
-            grdCarros.DataSource = proveedores.ToList();
+            carros = await carroManager.ObtenerCarros(VG.usuarioActual.CadenaToken);
+            grdCarros.DataSource = carros.ToList();
             grdCarros.DataBind();
         }
 
@@ -36,9 +36,12 @@ namespace AppReservasSW.Views
 
         async protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (ValidarInsertar())
+            //if (ValidarInsertar())
+            //{
+            //int reservacionNula2 = Convert.ToInt32(txtRes.Text);
+            if (txtRes.Text == "" )
             {
-                Models.Carro proveedorIngresado = new Models.Carro();
+                Models.Carro carroIngresado = new Models.Carro();
                 Models.Carro carro = new Models.Carro()
                 {
 
@@ -47,13 +50,12 @@ namespace AppReservasSW.Views
                     CAR_PLACA = txtPlaca.Text,
                     SED_ID = Convert.ToInt32(txtSede.Text),
                     LOT_ID = Convert.ToInt32(txtLote.Text),
-                    RES_ID = Convert.ToInt32(txtRes.Text)
+                    RES_ID = 0
                 };
 
-                proveedorIngresado =
-                    await carroManager.Ingresar(carro, VG.usuarioActual.CadenaToken);
+                carroIngresado = await carroManager.Ingresar(carro, VG.usuarioActual.CadenaToken);
 
-                if (proveedorIngresado != null)
+                if (carroIngresado != null)
                 {
                     lblStatus.Text = "Carro ingresado correctamente";
                     lblStatus.Visible = true;
@@ -66,17 +68,12 @@ namespace AppReservasSW.Views
                     lblStatus.Visible = true;
                 }
             }
-        }
-
-
-        async protected void btnModificar_Click(object sender, EventArgs e)
-        {
-            if (ValidarModificar())
+            else
             {
-                Models.Carro proveedorModificado = new Models.Carro();
+                Models.Carro carroIngresado = new Models.Carro();
                 Models.Carro carro = new Models.Carro()
                 {
-                    CAR_ID = Convert.ToInt32(txtID.Text),
+
                     MOD_ID = Convert.ToInt32(txtModeloID.Text),
                     CAR_ESTADO = txtEstado.Text,
                     CAR_PLACA = txtPlaca.Text,
@@ -85,10 +82,53 @@ namespace AppReservasSW.Views
                     RES_ID = Convert.ToInt32(txtRes.Text)
                 };
 
-                proveedorModificado =
+                carroIngresado = await carroManager.Ingresar(carro, VG.usuarioActual.CadenaToken);
+
+                if (carroIngresado != null)
+                {
+                    lblStatus.Text = "Carro ingresado correctamente";
+                    lblStatus.Visible = true;
+                    InicializarControles();
+                }
+                else
+                {
+                    lblStatus.Text = "Hubo un error al ingresar el carro";
+                    lblStatus.ForeColor = Color.Maroon;
+                    lblStatus.Visible = true;
+                }
+            }
+
+
+
+                
+
+
+            
+        }
+
+
+        async protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            //if (ValidarModificar())
+            //{
+            if (txtRes.Text == "")
+            {
+                Models.Carro carroModificado = new Models.Carro();
+                Models.Carro carro = new Models.Carro()
+                {
+                    CAR_ID = Convert.ToInt32(txtID.Text),
+                    MOD_ID = Convert.ToInt32(txtModeloID.Text),
+                    CAR_ESTADO = txtEstado.Text,
+                    CAR_PLACA = txtPlaca.Text,
+                    SED_ID = Convert.ToInt32(txtSede.Text),
+                    LOT_ID = Convert.ToInt32(txtLote.Text),
+                    RES_ID = 0
+                };
+
+                carroModificado =
                     await carroManager.Actualizar(carro, VG.usuarioActual.CadenaToken);
 
-                if (proveedorModificado != null)
+                if (carroModificado != null)
                 {
                     lblStatus.Text = "Carro modificado correctamente";
                     lblStatus.Visible = true;
@@ -101,21 +141,53 @@ namespace AppReservasSW.Views
                     lblStatus.Visible = true;
                 }
             }
+            else
+            {
+                Models.Carro carroModificado = new Models.Carro();
+                Models.Carro carro = new Models.Carro()
+                {
+                    CAR_ID = Convert.ToInt32(txtID.Text),
+                    MOD_ID = Convert.ToInt32(txtModeloID.Text),
+                    CAR_ESTADO = txtEstado.Text,
+                    CAR_PLACA = txtPlaca.Text,
+                    SED_ID = Convert.ToInt32(txtSede.Text),
+                    LOT_ID = Convert.ToInt32(txtLote.Text),
+                    RES_ID = Convert.ToInt32(txtRes.Text)
+                };
+
+                carroModificado =
+                    await carroManager.Actualizar(carro, VG.usuarioActual.CadenaToken);
+
+                if (carroModificado != null)
+                {
+                    lblStatus.Text = "Carro modificado correctamente";
+                    lblStatus.Visible = true;
+                    InicializarControles();
+                }
+                else
+                {
+                    lblStatus.Text = "Hubo un error al modificar el carro";
+                    lblStatus.ForeColor = Color.Maroon;
+                    lblStatus.Visible = true;
+                }
+            }
+
+            
         }
 
         async protected void btnEliminar_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtID.Text))
             {
-                string idProveedorEliminado = string.Empty;
-                string idProveedor = string.Empty;
+                string idCarroEliminado = string.Empty;
+                string idCarro = string.Empty;
 
-                idProveedorEliminado = txtID.Text;
+                idCarro = txtID.Text;
 
-                idProveedorEliminado =
-                    await carroManager.Eliminar(idProveedor, VG.usuarioActual.CadenaToken);
+                idCarroEliminado =
+                    await carroManager.Eliminar(idCarro, VG.usuarioActual.CadenaToken);
 
-                if (!string.IsNullOrEmpty(idProveedorEliminado))
+                if (!string.IsNullOrEmpty(idCarroEliminado))
                 {
                     lblStatus.Text = "Carro eliminado correctamente";
                     lblStatus.Visible = true;
@@ -136,123 +208,100 @@ namespace AppReservasSW.Views
             }
         }
 
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
+        
+        //private bool ValidarInsertar()
+        //{
 
-        }
+        //    if (txtModeloID.Text.IsNullOrWhiteSpace())
+        //    {
+        //        lblStatus.Text = "Debe ingresar la sede";
+        //        lblStatus.ForeColor = Color.Maroon;
+        //        lblStatus.Visible = true;
+        //        return false;
+        //    }
 
+        //    if (txtEstado.Text.IsNullOrWhiteSpace())
+        //    {
+        //        lblStatus.Text = "Debe ingresar el nombre del carro";
+        //        lblStatus.ForeColor = Color.Maroon;
+        //        lblStatus.Visible = true;
+        //        return false;
+        //    }
 
-        private bool ValidarInsertar()
-        {
-
-
-
-            if (txtModeloID.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar la sede";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
-
-            if (txtEstado.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar el nombre del carro";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
-
-            if (txtPlaca.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar la funcion del carro";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
-            if (txtSede.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar la funcion del carro";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
-            if (txtLote.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar la funcion del carro";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
-            if (txtRes.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar la funcion del carro";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
-
-            return true;
-        }
+        //    if (txtPlaca.Text.IsNullOrWhiteSpace())
+        //    {
+        //        lblStatus.Text = "Debe ingresar la funcion del carro";
+        //        lblStatus.ForeColor = Color.Maroon;
+        //        lblStatus.Visible = true;
+        //        return false;
+        //    }
+        //    if (txtSede.Text.IsNullOrWhiteSpace())
+        //    {
+        //        lblStatus.Text = "Debe ingresar la funcion del carro";
+        //        lblStatus.ForeColor = Color.Maroon;
+        //        lblStatus.Visible = true;
+        //        return false;
+        //    }
+        //    if (txtLote.Text.IsNullOrWhiteSpace())
+        //    {
+        //        lblStatus.Text = "Debe ingresar la funcion del carro";
+        //        lblStatus.ForeColor = Color.Maroon;
+        //        lblStatus.Visible = true;
+        //        return false;
+        //    }
+        //    return true;
+        //}
 
 
-        private bool ValidarModificar()
-        {
-            if (txtID.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar la sede";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
+        //private bool ValidarModificar()
+        //{
+        //    if (txtID.Text.IsNullOrWhiteSpace())
+        //    {
+        //        lblStatus.Text = "Debe ingresar el ID del carro";
+        //        lblStatus.ForeColor = Color.Maroon;
+        //        lblStatus.Visible = true;
+        //        return false;
+        //    }
 
-            if (txtModeloID.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar la sede";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
+        //    if (txtModeloID.Text.IsNullOrWhiteSpace())
+        //    {
+        //        lblStatus.Text = "Debe ingresar El Modelo del carro";
+        //        lblStatus.ForeColor = Color.Maroon;
+        //        lblStatus.Visible = true;
+        //        return false;
+        //    }
 
-            if (txtEstado.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar el nombre del carro";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
+        //    if (txtEstado.Text.IsNullOrWhiteSpace())
+        //    {
+        //        lblStatus.Text = "Debe ingresar el estado del carro";
+        //        lblStatus.ForeColor = Color.Maroon;
+        //        lblStatus.Visible = true;
+        //        return false;
+        //    }
 
-            if (txtPlaca.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar la funcion del carro";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
-            if (txtSede.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar la funcion del carro";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
-            if (txtLote.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar la funcion del carro";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
-            if (txtRes.Text.IsNullOrWhiteSpace())
-            {
-                lblStatus.Text = "Debe ingresar la funcion del carro";
-                lblStatus.ForeColor = Color.Maroon;
-                lblStatus.Visible = true;
-                return false;
-            }
+        //    if (txtPlaca.Text.IsNullOrWhiteSpace())
+        //    {
+        //        lblStatus.Text = "Debe ingresar la Placa del carro";
+        //        lblStatus.ForeColor = Color.Maroon;
+        //        lblStatus.Visible = true;
+        //        return false;
+        //    }
+        //    if (txtSede.Text.IsNullOrWhiteSpace())
+        //    {
+        //        lblStatus.Text = "Debe ingresar la Sede del carro";
+        //        lblStatus.ForeColor = Color.Maroon;
+        //        lblStatus.Visible = true;
+        //        return false;
+        //    }
+        //    if (txtLote.Text.IsNullOrWhiteSpace())
+        //    {
+        //        lblStatus.Text = "Debe ingresar el Lote del carro";
+        //        lblStatus.ForeColor = Color.Maroon;
+        //        lblStatus.Visible = true;
+        //        return false;
+        //    }
 
-
-            return true;
-        }
+        //    return true;
+        //}
     }
 }

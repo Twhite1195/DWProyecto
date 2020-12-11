@@ -20,6 +20,7 @@ namespace AppReservasSW.Views
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            InicializarControles();
         }
 
         private async void InicializarControles()
@@ -99,7 +100,7 @@ namespace AppReservasSW.Views
                 string idLoteEliminado = string.Empty;
                 string idLote = string.Empty;
 
-                idLoteEliminado = txtID.Text;
+                idLote = txtID.Text;
 
                 idLoteEliminado =
                     await loteManager.Eliminar(idLote, VG.usuarioActual.CadenaToken);

@@ -218,8 +218,6 @@ D:\Documents\GitHub\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReserva
 D:\Documents\GitHub\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.csproj.CopyComplete
 D:\Documents\GitHub\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.dll
 D:\Documents\GitHub\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.pdb
-D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.csproj.App.config
-D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.csproj.CoreCompileInputs.cache
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\bin\AppReservasSW.dll.config
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\bin\AppReservasSW.dll
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\bin\AppReservasSW.pdb
@@ -327,6 +325,8 @@ D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\bin\es\Sy
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\bin\es\System.Web.Webpages.Razor.resources.dll
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\bin\es\System.Web.Helpers.resources.dll
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\bin\es\System.Web.Mvc.resources.dll
+D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.csproj.App.config
+D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.csproj.CoreCompileInputs.cache
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.csproj.CopyComplete
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.dll
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.pdb

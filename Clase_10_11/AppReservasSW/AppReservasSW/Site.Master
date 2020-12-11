@@ -53,10 +53,16 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Inicio</a></li>
-                        <li><a runat="server" href="~/Views/Hotel.aspx">Hotel</a></li>
-                        <li><a runat="server" href="~/Views/Habitacion.aspx">Habitacion</a></li>
-                        <li><a runat="server" href="~/Views/Reserva.aspx">Reserva</a></li>
                         <li><a runat="server" href="~/Views/Modelo.aspx">Modelo</a></li>
+                        <li><a runat="server" href="~/Views/Carro.aspx">Carro</a></li>
+                        <li><a runat="server" href="~/Views/Lote.aspx">Lote</a></li>
+                        <li><a runat="server" href="~/Views/Proveedor.aspx">Proveedor</a></li>
+                        <li><a runat="server" href="~/Views/Sede.aspx">Sede</a></li>
+                        <li><a runat="server" href="~/Views/Reservacion.aspx">Reservacion</a></li>
+                        <li><a runat="server" href="~/Views/Empleado.aspx">Empleado</a></li>
+                        <li><a runat="server" href="~/Views/Puesto.aspx">Puesto</a></li>
+
+
                     </ul>
                 </div>
             </div>

@@ -37,14 +37,14 @@ namespace AppReservasSW.Views
             if (ValidarInsertar())
             {
                 Models.Modelo modeloIngresado = new Models.Modelo();
-                Models.Modelo Modelo = new Models.Modelo()
+                Models.Modelo modelo = new Models.Modelo()
                 {
                     MOD_MARCA = txtMarca.Text,
                     MOD_NOMBRE = txtNombre.Text
                 };
 
                 modeloIngresado =
-                    await modeloManager.Ingresar(Modelo, VG.usuarioActual.CadenaToken);
+                    await modeloManager.Ingresar(modelo, VG.usuarioActual.CadenaToken);
 
                 if (modeloIngresado != null)
                 {
@@ -124,12 +124,6 @@ namespace AppReservasSW.Views
                 lblStatus.Visible = true;
             }
         }
-
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         private bool ValidarInsertar()
         {

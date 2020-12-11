@@ -326,7 +326,6 @@ D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\bin\es\Sy
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\bin\es\System.Web.Helpers.resources.dll
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\bin\es\System.Web.Mvc.resources.dll
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.csproj.App.config
-D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.csprojAssemblyReference.cache
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.csproj.CoreCompileInputs.cache
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.csproj.CopyComplete
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.dll

@@ -330,3 +330,4 @@ D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.csproj.CopyComplete
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.dll
 D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.pdb
+D:\Documents\GitHub\DWProyecto\Clase_10_11\AppReservasSW\AppReservasSW\obj\Debug\AppReservasSW.csprojAssemblyReference.cache

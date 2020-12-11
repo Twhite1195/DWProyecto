@@ -103,7 +103,7 @@ namespace AppReservasSW.Views
                 string idProveedorEliminado = string.Empty;
                 string idProveedor = string.Empty;
 
-                idProveedorEliminado = txtID.Text;
+                idProveedor = txtID.Text;
 
                 idProveedorEliminado =
                     await proveedorManager.Eliminar(idProveedor, VG.usuarioActual.CadenaToken);

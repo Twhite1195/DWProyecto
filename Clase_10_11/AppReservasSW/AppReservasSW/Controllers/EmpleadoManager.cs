@@ -25,7 +25,7 @@ namespace AppReservasSW.Controllers
 
             return client;
         }
-        public async Task<IEnumerable<Empleado>> ObtenerLotes(string token)
+        public async Task<IEnumerable<Empleado>> ObtenerEmpleados(string token)
         {
             HttpClient client = GetClient(token);
             string resultado = await client.GetStringAsync(URL);
@@ -33,7 +33,7 @@ namespace AppReservasSW.Controllers
             return JsonConvert.DeserializeObject<IEnumerable<Empleado>>(resultado);
         }
 
-        public async Task<IEnumerable<Empleado>> ObtenerLote(string token, string codigo)
+        public async Task<IEnumerable<Empleado>> ObtenerEmpleados(string token, string codigo)
         {
             HttpClient client = GetClient(token);
             string resultado = await client.GetStringAsync(URL + codigo);

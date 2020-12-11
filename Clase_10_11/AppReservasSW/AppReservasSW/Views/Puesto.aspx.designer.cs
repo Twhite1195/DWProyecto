@@ -15,13 +15,13 @@ namespace AppReservasSW.Views
     {
 
         /// <summary>
-        /// Control GridView1.
+        /// Control grdPuestos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView grdPuestos;
 
         /// <summary>
         /// Control txt_puesto_ID.
@@ -33,13 +33,13 @@ namespace AppReservasSW.Views
         protected global::System.Web.UI.WebControls.TextBox txt_puesto_ID;
 
         /// <summary>
-        /// Control Txt_puesto.
+        /// Control txt_puesto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txt_puesto;
+        protected global::System.Web.UI.WebControls.TextBox txt_puesto;
 
         /// <summary>
         /// Control btnAgregar.
@@ -67,5 +67,14 @@ namespace AppReservasSW.Views
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEliminar;
+
+        /// <summary>
+        /// Control lblStatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatus;
     }
 }

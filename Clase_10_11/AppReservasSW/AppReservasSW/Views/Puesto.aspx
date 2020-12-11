@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div>
     </div>
-    <asp:GridView ID="GridView1" runat="server">
+    <asp:GridView ID="grdPuestos" runat="server">
     </asp:GridView>
 
     <br />
@@ -20,7 +20,7 @@
             <td class="auto-style6">
                 Puesto </td>
             <td class="auto-style3">
-                <asp:TextBox ID="Txt_puesto" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txt_puesto" runat="server" OnTextChanged="Txt_puesto_TextChanged"></asp:TextBox>
             </td>
         </tr>
       <tr>
@@ -34,6 +34,23 @@
             </td>
             <td>&nbsp;</td>
         </tr>
+
+             <%--  Boton Eliminar--%>
+        <tr>
+            <td class="modal-sm" style="width: 190px; height: 21px;">
+                <asp:Label ID="lblStatus" runat="server" Text="Label" ForeColor="#006600" Visible="False"></asp:Label>
+            </td>
+            <td style="height: 21px"></td>
+            <td style="height: 21px"></td>
+        </tr>
+
+
+        <tr>
+            <td class="modal-sm" style="width: 190px">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+
      </table>
    
 </asp:Content>

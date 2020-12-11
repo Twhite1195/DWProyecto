@@ -15,22 +15,22 @@ namespace AppReservasSW.Views
     {
 
         /// <summary>
-        /// Control GridView1.
+        /// Control grdEmpleados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView grdEmpleados;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control txt_empleado_id.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txt_empleado_id;
 
         /// <summary>
         /// Control txt_nombre.
@@ -87,13 +87,13 @@ namespace AppReservasSW.Views
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control drpSede.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList drpSede;
 
         /// <summary>
         /// Control Label1.
@@ -105,13 +105,13 @@ namespace AppReservasSW.Views
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control drpCategoria.
+        /// Control drpPuesto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpCategoria;
+        protected global::System.Web.UI.WebControls.DropDownList drpPuesto;
 
         /// <summary>
         /// Control btnAgregar.
@@ -139,5 +139,14 @@ namespace AppReservasSW.Views
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEliminar;
+
+        /// <summary>
+        /// Control lblStatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatus;
     }
 }

@@ -9,7 +9,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div>
     </div>
-    <asp:GridView ID="GridView1" runat="server">
+    <asp:GridView ID="grdEmpleados" runat="server">
     </asp:GridView>
     <br />
     <br />
@@ -21,7 +21,7 @@
             <td class="auto-style6">
                 Empleado ID</td>
             <td class="auto-style3">
-                <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="txtID_TextChanged"></asp:TextBox>
+                <asp:TextBox ID="txt_empleado_id" runat="server" OnTextChanged="txtID_TextChanged"></asp:TextBox>
             </td>
         </tr>
        
@@ -70,7 +70,7 @@
                 <asp:Label ID="Label2" runat="server" Text="Sede"></asp:Label>
             </td>
             <td class="auto-style3">
-                <asp:DropDownList ID="DropDownList1" runat="server">
+                <asp:DropDownList ID="drpSede" runat="server">
                    <asp:ListItem Selected="True" Value="1">HQ</asp:ListItem>
                     <asp:ListItem Value="3">Ghetto</asp:ListItem>
                     <asp:ListItem Value="2">Paradise</asp:ListItem>
@@ -85,7 +85,7 @@
                 <asp:Label ID="Label1" runat="server" Text="Puesto"></asp:Label>
             </td>
             <td class="auto-style3">
-                <asp:DropDownList ID="drpCategoria" runat="server">
+                <asp:DropDownList ID="drpPuesto" runat="server">
                    <asp:ListItem Selected="True" Value="1">Administrador</asp:ListItem>
                     <asp:ListItem Value="4">Jefe de supervisores</asp:ListItem>
                     <asp:ListItem Value="2">Gerente</asp:ListItem>
@@ -107,5 +107,15 @@
             </td>
             <td>&nbsp;</td>
         </tr>
+
+          <%--  Boton Eliminar--%>
+        <tr>
+            <td class="modal-sm" style="width: 190px; height: 21px;">
+                <asp:Label ID="lblStatus" runat="server" Text="Label" ForeColor="#006600" Visible="False"></asp:Label>
+            </td>
+            <td style="height: 21px"></td>
+            <td style="height: 21px"></td>
+        </tr>
+
     </table>
 </asp:Content>

@@ -143,7 +143,7 @@ namespace AppReservasSW.Views
                 string idPuestoEliminado = string.Empty;
                 string idPuesto = string.Empty;
 
-                idPuestoEliminado = txt_puesto_ID.Text;
+                idPuesto = txt_puesto_ID.Text;
 
                 idPuestoEliminado =
                     await puestoManager.Eliminar(idPuesto, VG.usuarioActual.CadenaToken);

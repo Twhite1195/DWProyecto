@@ -13,7 +13,7 @@ namespace AppReservasSW.Views
 {
     public partial class Sede : System.Web.UI.Page
     {
-        IEnumerable<Models.Sede> modelos = new ObservableCollection<Models.Sede>();
+        IEnumerable<Models.Sede> sedes = new ObservableCollection<Models.Sede>();
         SedeManager sedeManager = new SedeManager();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,8 +23,8 @@ namespace AppReservasSW.Views
         private async void InicializarControles()
         {
 
-            modelos = await sedeManager.ObtenerSedes(VG.usuarioActual.CadenaToken);
-            grdSedes.DataSource = modelos.ToList();
+            sedes = await sedeManager.ObtenerSedes(VG.usuarioActual.CadenaToken);
+            grdSedes.DataSource = sedes.ToList();
             grdSedes.DataBind();
         }
 

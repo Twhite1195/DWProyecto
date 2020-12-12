@@ -132,7 +132,7 @@ namespace WebApiSegura.Controllers
         }
 
 
-        private bool RegistrarEmpleado(Empleado empleado)
+        public bool RegistrarEmpleado(Empleado empleado)
         {
             bool resultado = false;
 
@@ -197,7 +197,7 @@ namespace WebApiSegura.Controllers
 
         }
 
-        private bool ActualizarEmpleado(Empleado empleado
+        public bool ActualizarEmpleado(Empleado empleado
             )
         {
             bool resultado = false;
@@ -252,7 +252,7 @@ namespace WebApiSegura.Controllers
                 return InternalServerError();
         }
 
-        private bool EliminarEmpleado(int id)
+        public bool EliminarEmpleado(int id)
         {
             bool resultado = false;
 

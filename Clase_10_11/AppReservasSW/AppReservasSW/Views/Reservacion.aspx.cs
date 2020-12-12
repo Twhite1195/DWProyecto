@@ -15,6 +15,7 @@ namespace AppReservasSW.Views
     {
         IEnumerable<Models.Reservacion> reservaciones = new ObservableCollection<Models.Reservacion>();
         ReservacionManager reservacionManager = new ReservacionManager();
+        LoteManager loteManager = new LoteManager();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,6 +28,14 @@ namespace AppReservasSW.Views
             reservaciones = await reservacionManager.ObtenerReservaciones(VG.usuarioActual.CadenaToken);
             grdReservaciones.DataSource = reservaciones.ToList();
             grdReservaciones.DataBind();
+
+            IEnumerable<Models.Lote> escogeLotes= new ObservableCollection<Models.Lote>();
+            escogeLotes = await loteManager.ObtenerLotes(VG.usuarioActual.CadenaToken);
+            DropLote.DataSource = escogeLotes.ToList();
+
+            DropLote.DataTextField = "LOT_ID";
+            DropLote.DataValueField = "LOT_ID";
+            DropLote.DataBind();
         }
 
         async protected void btnIngresar_Click(object sender, EventArgs e)

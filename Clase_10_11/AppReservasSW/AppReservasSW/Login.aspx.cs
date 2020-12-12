@@ -18,23 +18,34 @@ namespace AppReservasSW
         }
         async protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            UsuarioManager usuarioManager = new UsuarioManager();
-            Usuario usuario = await usuarioManager.Validar(Identificacion.Text, Password.Text);
-            JwtSecurityToken securityToken;
-            if(!string.IsNullOrEmpty(usuario.CadenaToken))
+            try
             {
-                var jwtHandler = new JwtSecurityTokenHandler();
-                securityToken = jwtHandler.ReadJwtToken(usuario.CadenaToken);
-                FormsAuthentication.RedirectFromLoginPage(
-                    Identificacion.Text, true);
+                UsuarioManager usuarioManager = new UsuarioManager();
+                Usuario usuario = await usuarioManager.Validar(Identificacion.Text, Password.Text);
+                JwtSecurityToken securityToken;
 
-                VG.usuarioActual = usuario;
+                if (usuario != null)
+                {
+                    var jwtHandler = new JwtSecurityTokenHandler();
+                    securityToken = jwtHandler.ReadJwtToken(usuario.CadenaToken);
+                    FormsAuthentication.RedirectFromLoginPage(
+                        Identificacion.Text, true);
+
+                    VG.usuarioActual = usuario;
+                }
+                else
+                {
+                    FailureText.Text = "Credenciales inválidas";
+                    FailureText.Visible = true;
+                }
             }
-            else
+            catch (Exception)
             {
                 FailureText.Text = "Credenciales inválidas";
                 FailureText.Visible = true;
+
             }
+            
         }
     }
 }

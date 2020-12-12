@@ -36,6 +36,8 @@
                 Lote ID</td>
             <td>
                 <asp:TextBox ID="txtLoteId" runat="server"></asp:TextBox>
+                <asp:DropDownList ID="DropLote" runat="server">
+                </asp:DropDownList>
             </td>
             <td>&nbsp;</td>
         </tr>

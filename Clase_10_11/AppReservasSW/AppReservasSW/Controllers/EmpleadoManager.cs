@@ -14,7 +14,7 @@ namespace AppReservasSW.Controllers
     public class EmpleadoManager
     {
         const string URL = "http://localhost:49220/api/Empleado/";
-        const string URLIngresar = "http://localhost:49220/api/lote/Empleado/";
+        const string URLIngresar = "http://localhost:49220/api/Empleado/Ingresar/";
 
         HttpClient GetClient(string token)
         {

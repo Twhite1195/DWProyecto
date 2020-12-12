@@ -42,6 +42,15 @@ namespace AppReservasSW.Views
         protected global::System.Web.UI.WebControls.TextBox txtLoteId;
 
         /// <summary>
+        /// DropLote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropLote;
+
+        /// <summary>
         /// txtUsuarioId control.
         /// </summary>
         /// <remarks>

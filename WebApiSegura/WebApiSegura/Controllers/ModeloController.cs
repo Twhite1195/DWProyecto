@@ -96,10 +96,9 @@ namespace WebApiSegura.Controllers
                 return BadRequest();
             if (RegistrarModelo(modelo))
             {
-                return Ok();
+                return Ok(modelo);
             }
             else return InternalServerError();
-            return Ok(modelo);
         }
 
         private bool RegistrarModelo(Modelo modelo)

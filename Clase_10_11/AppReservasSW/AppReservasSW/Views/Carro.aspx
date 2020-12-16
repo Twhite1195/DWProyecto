@@ -1,24 +1,10 @@
 ﻿<%@ Page Async="true" Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Carro.aspx.cs" Inherits="AppReservasSW.Views.Carro" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .auto-style1 {
-            width: 85px;
-        }
-        .auto-style2 {
-            width: 85px;
-            height: 22px;
-        }
         .auto-style3 {
             height: 22px;
         }
-        .auto-style4 {
-            width: 279px;
-        }
-        .auto-style5 {
-            height: 22px;
-            width: 279px;
-        }
-    </style>
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:GridView ID="grdCarros" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AllowPaging="True">
@@ -34,7 +20,7 @@
     </asp:GridView>
 
     <table style="width:100%;">
-        <%--  ID CARRO  --%>
+        <%--  Boton Eliminar--%>
          <tr>
             <td class="auto-style6">
                 <asp:Label ID="Label1" runat="server" Text="ID Carro"></asp:Label>
@@ -44,18 +30,19 @@
             </td>
             <td class="auto-style3"></td>
         </tr>
-        <%--  Modelo ID --%>
+        <%--  Botones Agregar y Modificar--%>
         <tr>
             <td class="auto-style6">
                 <asp:Label ID="Label2" runat="server" Text="Modelo"></asp:Label>
             </td>
             <td class="auto-style3">
-                <asp:TextBox ID="txtModeloID" runat="server"></asp:TextBox>
+                <asp:DropDownList ID="modeloList" runat="server">
+                </asp:DropDownList>
             </td>
             <td class="auto-style3"></td>
         </tr>
 
-        <%--  Estado --%>
+        <%--  Boton Eliminar--%>
         <tr>
             <td class="auto-style6">
                 <asp:Label ID="Label3" runat="server" Text="Estado"></asp:Label>
@@ -66,7 +53,7 @@
             <td class="auto-style3"></td>
         </tr>
 
-          <%--  Placa --%>
+        <%--  Botones Agregar y Modificar--%>
         <tr>
             <td class="auto-style6">
                 <asp:Label ID="Label4" runat="server" Text="Placa"></asp:Label>
@@ -78,30 +65,32 @@
             <td class="auto-style3"></td>
         </tr>
 
-        <%--  Sede --%>
+        <%--  Boton Eliminar--%>
         <tr>
             <td class="auto-style6">
                 <asp:Label ID="Label5" runat="server" Text="Sede"></asp:Label>
             </td>
 
             <td class="auto-style3">
-                <asp:TextBox ID="txtSede" runat="server"></asp:TextBox>
+                <asp:DropDownList ID="sedeList" runat="server">
+                </asp:DropDownList>
             </td>
             <td class="auto-style3"></td>
         </tr>
-        <%--  Lote --%>
+        <%--  Botones Agregar y Modificar--%>
         <tr>
             <td class="auto-style6">
                 <asp:Label ID="Label6" runat="server" Text="Lote"></asp:Label>
             </td>
 
             <td class="auto-style3">
-                <asp:TextBox ID="txtLote" runat="server"></asp:TextBox>
+                <asp:DropDownList ID="loteList" runat="server">
+                </asp:DropDownList>
             </td>
             <td class="auto-style3"></td>
         </tr>
 
-        <%--  Reservacion --%>
+        <%--  Boton Eliminar--%>
         <tr>
             <td class="auto-style6">
                 <asp:Label ID="Label7" runat="server" Text="Reservacion"></asp:Label>

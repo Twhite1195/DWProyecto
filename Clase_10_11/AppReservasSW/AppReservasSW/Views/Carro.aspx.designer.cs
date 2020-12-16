@@ -51,13 +51,13 @@ namespace AppReservasSW.Views
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// txtModeloID control.
+        /// modeloList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtModeloID;
+        protected global::System.Web.UI.WebControls.DropDownList modeloList;
 
         /// <summary>
         /// Label3 control.
@@ -105,13 +105,13 @@ namespace AppReservasSW.Views
         protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// txtSede control.
+        /// sedeList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSede;
+        protected global::System.Web.UI.WebControls.DropDownList sedeList;
 
         /// <summary>
         /// Label6 control.
@@ -123,13 +123,13 @@ namespace AppReservasSW.Views
         protected global::System.Web.UI.WebControls.Label Label6;
 
         /// <summary>
-        /// txtLote control.
+        /// loteList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLote;
+        protected global::System.Web.UI.WebControls.DropDownList loteList;
 
         /// <summary>
         /// Label7 control.

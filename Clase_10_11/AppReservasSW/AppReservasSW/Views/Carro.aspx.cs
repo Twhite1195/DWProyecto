@@ -16,7 +16,10 @@ namespace AppReservasSW.Views
     {
         IEnumerable<Models.Carro> carros = new ObservableCollection<Models.Carro>();
         CarroManager carroManager = new CarroManager();
-
+        ModeloManager modeloManager = new ModeloManager();
+        SedeManager sedeManager = new SedeManager();
+        LoteManager loteManager = new LoteManager();
+        ReservacionManager reservacionManager = new ReservacionManager();
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -30,6 +33,29 @@ namespace AppReservasSW.Views
             carros = await carroManager.ObtenerCarros(VG.usuarioActual.CadenaToken);
             grdCarros.DataSource = carros.ToList();
             grdCarros.DataBind();
+
+            IEnumerable<Models.Modelo> escogeModelos= new ObservableCollection<Models.Modelo>();
+            escogeModelos = await modeloManager.ObtenerModelos(VG.usuarioActual.CadenaToken);
+            modeloList.DataSource = escogeModelos.ToList();
+            modeloList.DataTextField = "MOD_NOMBRE";
+            modeloList.DataValueField = "MOD_ID";
+            modeloList.DataBind();
+
+            IEnumerable<Models.Sede> escogeSedes = new ObservableCollection<Models.Sede>();
+            escogeSedes = await sedeManager.ObtenerSedes(VG.usuarioActual.CadenaToken);
+            sedeList.DataSource = escogeSedes.ToList();
+            sedeList.DataTextField = "SED_NOMBRE";
+            sedeList.DataValueField = "SED_ID";
+            sedeList.DataBind();
+
+            IEnumerable<Models.Lote> escogeLotes = new ObservableCollection<Models.Lote>();
+            escogeLotes = await loteManager.ObtenerLotes(VG.usuarioActual.CadenaToken);
+            loteList.DataSource = escogeLotes.ToList();
+
+            loteList.DataTextField = "LOT_ID";
+            loteList.DataValueField = "LOT_ID";
+            loteList.DataBind();
+
         }
 
 
@@ -44,13 +70,18 @@ namespace AppReservasSW.Views
                 Models.Carro carroIngresado = new Models.Carro();
                 Models.Carro carro = new Models.Carro()
                 {
-
-                    MOD_ID = Convert.ToInt32(txtModeloID.Text),
+                    MOD_ID = Convert.ToInt32(modeloList.SelectedValue),
                     CAR_ESTADO = txtEstado.Text,
                     CAR_PLACA = txtPlaca.Text,
-                    SED_ID = Convert.ToInt32(txtSede.Text),
-                    LOT_ID = Convert.ToInt32(txtLote.Text),
+                    SED_ID = Convert.ToInt32(sedeList.SelectedValue),
+                    LOT_ID = Convert.ToInt32(loteList.SelectedValue),
                     RES_ID = 0
+                    //MOD_ID = Convert.ToInt32(txtModeloID.Text),
+                    //CAR_ESTADO = txtEstado.Text,
+                    //CAR_PLACA = txtPlaca.Text,
+                    //SED_ID = Convert.ToInt32(txtSede.Text),
+                    //LOT_ID = Convert.ToInt32(txtLote.Text),
+                    //RES_ID = 0
                 };
 
                 carroIngresado = await carroManager.Ingresar(carro, VG.usuarioActual.CadenaToken);
@@ -74,11 +105,11 @@ namespace AppReservasSW.Views
                 Models.Carro carro = new Models.Carro()
                 {
 
-                    MOD_ID = Convert.ToInt32(txtModeloID.Text),
+                    MOD_ID = Convert.ToInt32(modeloList.SelectedValue),
                     CAR_ESTADO = txtEstado.Text,
                     CAR_PLACA = txtPlaca.Text,
-                    SED_ID = Convert.ToInt32(txtSede.Text),
-                    LOT_ID = Convert.ToInt32(txtLote.Text),
+                    SED_ID = Convert.ToInt32(sedeList.SelectedValue),
+                    LOT_ID = Convert.ToInt32(loteList.SelectedValue),
                     RES_ID = Convert.ToInt32(txtRes.Text)
                 };
 
@@ -117,11 +148,11 @@ namespace AppReservasSW.Views
                 Models.Carro carro = new Models.Carro()
                 {
                     CAR_ID = Convert.ToInt32(txtID.Text),
-                    MOD_ID = Convert.ToInt32(txtModeloID.Text),
+                    MOD_ID = Convert.ToInt32(modeloList.SelectedValue),
                     CAR_ESTADO = txtEstado.Text,
                     CAR_PLACA = txtPlaca.Text,
-                    SED_ID = Convert.ToInt32(txtSede.Text),
-                    LOT_ID = Convert.ToInt32(txtLote.Text),
+                    SED_ID = Convert.ToInt32(sedeList.SelectedValue),
+                    LOT_ID = Convert.ToInt32(loteList.SelectedValue),
                     RES_ID = 0
                 };
 
@@ -147,11 +178,11 @@ namespace AppReservasSW.Views
                 Models.Carro carro = new Models.Carro()
                 {
                     CAR_ID = Convert.ToInt32(txtID.Text),
-                    MOD_ID = Convert.ToInt32(txtModeloID.Text),
+                    MOD_ID = Convert.ToInt32(modeloList.SelectedValue),
                     CAR_ESTADO = txtEstado.Text,
                     CAR_PLACA = txtPlaca.Text,
-                    SED_ID = Convert.ToInt32(txtSede.Text),
-                    LOT_ID = Convert.ToInt32(txtLote.Text),
+                    SED_ID = Convert.ToInt32(sedeList.SelectedValue),
+                    LOT_ID = Convert.ToInt32(loteList.SelectedValue),
                     RES_ID = Convert.ToInt32(txtRes.Text)
                 };
 
